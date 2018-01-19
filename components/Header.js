@@ -9,7 +9,7 @@ const Header = () => (
         <Link href="/">
           <a style={linkStyle}>Clash Royale</a>
         </Link>
-        <Link href="/about">
+        <Link href="/coc">
           <a style={linkStyle}>Clash of Clans</a>
         </Link>
     </div>

@@ -7,21 +7,20 @@ const Player = props => (
     <div className="container">
       <div className="card bg-dark mb-3">
         <div className="card-body">
-          <h3 className="card-title text-white">Upcoming chests </h3>          
+          <h3 className="card-title text-white">Upcoming chests </h3>
 
-          {props.show.chestCycle.upcoming.map((chest,i) => (
+          {props.show.chestCycle.upcoming.map((chest, i) => (
+            <div className={"chest-container chest-container-" + chest} key={i}>
+              <img
+                src={"https://spy.deckshop.pro/img/chests/" + chest + ".png"}
+                alt=""
+                className={"chest chest-" + chest}
+              />
 
-          <div className={"chest-container chest-container-"+chest} key={i}>
-            <img
-              src={"https://spy.deckshop.pro/img/chests/"+chest+".png"}
-              alt=""
-              className={"chest chest-"+chest}
-            />
-
-            <span className="text-white h4 text-reverse" dir="ltr">
-              +{i}
-            </span>
-          </div>
+              <span className="text-white h4 text-reverse" dir="ltr">
+                +{i}
+              </span>
+            </div>
           ))}
 
           <div className="chest-container">
@@ -91,19 +90,19 @@ const Player = props => (
           <div className="clearfix">
             <a className="text-white" href={"/clan/2GPUC2#" + props.show.tag}>
               <img
-                src="https://spy.deckshop.pro/img/badges/16000029.png"
-                alt=""
+                src={props.show.clan.badge.image}
+                alt={props.show.clan.badge.name}
                 className="clanbadge rtl-mr-3"
               />
             </a>
 
             <h4 className="text-white pt-2 float-left">
               <a className="text-white" href={"/clan/2GPUC2#" + props.show.tag}>
-                --49
+                {props.show.clan.name}
               </a>
             </h4>
 
-            <p className="text-muted mb-0">Co-leader</p>
+            <p className="text-muted mb-0">{props.show.clan.role}</p>
           </div>
         </div>
       </div>
@@ -119,24 +118,24 @@ const Player = props => (
               </tr>
               <tr>
                 <th className="font-weight-normal">Level</th>
-                <td className="text-info">11</td>
+                <td className="text-info">{props.show.stats.level}</td>
               </tr>
               <tr>
                 <th className="font-weight-normal">Current Trophies</th>
                 <td className="text-warning">
-                  <span dir="ltr">3 824</span>
+                  <span dir="ltr">{props.show.trophies}</span>
                 </td>
               </tr>
               <tr>
                 <th className="font-weight-normal">Personal Best</th>
                 <td className="text-muted">
-                  <span dir="ltr">3 851</span>
+                  <span dir="ltr">{props.show.stats.maxTrophies}</span>
                 </td>
               </tr>
 
               <tr>
                 <th className="font-weight-normal">Arena</th>
-                <td className="text-white">Arena 12</td>
+                <td className="text-white">{props.show.arena.arena}</td>
               </tr>
               <tr>
                 <th colSpan={"666"} className="bg-dark text-muted">
@@ -146,13 +145,13 @@ const Player = props => (
               <tr>
                 <th className="font-weight-normal">Wins</th>
                 <td className="text-success">
-                  <span dir="ltr">1 221</span>
+                  <span dir="ltr">{props.show.games.win}</span>
                 </td>
               </tr>
               <tr>
                 <th className="font-weight-normal">Three Crown Wins</th>
                 <td>
-                  <span dir="ltr">824</span>{" "}
+                  <span dir="ltr">{props.show.stats.threeCrownWins}</span>{" "}
                   <small className="text-muted">
                     (<span dir="ltr">67.5%</span>)
                   </small>
@@ -161,19 +160,19 @@ const Player = props => (
               <tr>
                 <th className="font-weight-normal">Losses</th>
                 <td className="text-danger">
-                  <span dir="ltr">1 046</span>
+                  <span dir="ltr">{props.show.games.losses}</span>
                 </td>
               </tr>
               <tr>
                 <th className="font-weight-normal">Battle Count</th>
                 <td>
-                  <span dir="ltr">4 754</span>
+                  <span dir="ltr">{props.show.games.total}</span>
                 </td>
               </tr>
               <tr>
                 <th className="text-muted font-weight-normal">Draws</th>
                 <td className="text-muted">
-                  <span dir="ltr">2 487</span>{" "}
+                  <span dir="ltr">{props.show.games.draws}</span>{" "}
                   <small>
                     (<span dir="ltr">52.3%</span>)
                   </small>
@@ -224,13 +223,13 @@ const Player = props => (
               <tr>
                 <th className="font-weight-normal">Max Wins</th>
                 <td>
-                  <span dir="ltr">10</span>
+                  <span dir="ltr">{props.show.stats.challengeMaxWins}</span>
                 </td>
               </tr>
               <tr>
                 <th className="font-weight-normal">Cards won</th>
                 <td className="text-success">
-                  <span dir="ltr">1 825</span>
+                  <span dir="ltr">{props.show.stats.challengeCardsWon}</span>
                 </td>
               </tr>
               <tr>
@@ -249,13 +248,13 @@ const Player = props => (
               <tr>
                 <th className="font-weight-normal">Cards Won</th>
                 <td className="text-success">
-                  <span dir="ltr">39</span>
+                  <span dir="ltr">{props.show.stats.tournamentCardsWon}</span>
                 </td>
               </tr>
               <tr>
                 <th className="font-weight-normal">Battle Count</th>
                 <td>
-                  <span dir="ltr">260</span>
+                  <span dir="ltr">{props.show.games.tournamentGames}</span>
                 </td>
               </tr>
               <tr>
@@ -266,13 +265,13 @@ const Player = props => (
               <tr>
                 <th className="font-weight-normal">Total Donations</th>
                 <td className="text-success">
-                  <span dir="ltr">53 330</span>
+                  <span dir="ltr">{props.show.stats.totalDonations}</span>
                 </td>
               </tr>
               <tr>
                 <th className="font-weight-normal text-muted">Donations</th>
                 <td className="text-muted">
-                  <span dir="ltr">337</span>
+                  <span dir="ltr">{props.show.stats.donations}</span>
                 </td>
               </tr>
               <tr>
@@ -280,7 +279,7 @@ const Player = props => (
                   Donations Received
                 </th>
                 <td className="text-muted">
-                  <span dir="ltr">440</span>
+                  <span dir="ltr">{props.show.stats.donationsReceived}</span>
                 </td>
               </tr>
             </tbody>
