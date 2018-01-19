@@ -235,7 +235,7 @@ const Index = props => (
 );
 
 Index.getInitialProps = async function() {
-  const res = await fetch("http://api.cr-api.com/clan/2GPUC2", {
+  const res = await fetch("https://api.cr-api.com/clan/2GPUC2", {
     headers: {
       Authorization:
         "Bearer b8a24f73d4dd45909e8dc97a6e1a8ee89f7072acc2e9418189a8a47b57c1ad77",

@@ -293,7 +293,7 @@ const Player = props => (
 Player.getInitialProps = async function (context) {
   const { id } = context.query
   
-const res = await fetch(`http://api.cr-api.com/player/${id}`, {
+const res = await fetch(`https://api.cr-api.com/player/${id}`, {
     headers: {
       Authorization:
         "Bearer b8a24f73d4dd45909e8dc97a6e1a8ee89f7072acc2e9418189a8a47b57c1ad77",
