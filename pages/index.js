@@ -78,7 +78,9 @@ const Index = props => (
               <tr>
                 <th className="font-weight-normal">Clan Leader</th>
                 <td>
-                  <a href="#RCCV8C2">Sujendra shrest</a>
+                  <Link as={`/p/RCCV8C2`} href={`/player?id=RCCV8C2`}>
+                    <a>Sujendra shrest</a>
+                  </Link>
                 </td>
               </tr>
             </tbody>
@@ -162,13 +164,12 @@ const Index = props => (
                   <span className="text-success">
                     ↑<span dir="ltr">1</span>
                   </span>
+                ) : member.rank != member.previousRank ? (
+                  <span className="text-danger">
+                    ↓<span dir="ltr">2</span>
+                  </span>
                 ) : (
-                  member.rank !=
-                  member.previousRank ? (
-                    <span className="text-danger">
-                      ↓<span dir="ltr">2</span>
-                    </span>
-                  ) : ''
+                  ""
                 )}
               </td>
               <td className="d-none d-xs-table-cell">
@@ -184,9 +185,12 @@ const Index = props => (
                   {member.role}
                 </span>
                 <br className="mb-2" />
-                <a className="h4" href={"/player/" + member.tag}>
-                  {member.name}
-                </a>
+                <Link 
+                  as={`/p/${member.tag}`}
+                  href={`/player?id=${member.tag}`}
+                >
+                  <a>{member.name}</a>
+                </Link> 
                 <br />
                 <small className="text-muted">#{member.tag}</small>
               </td>
