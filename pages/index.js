@@ -162,11 +162,11 @@ const Index = props => (
 
                 {member.rank < member.previousRank ? (
                   <span className="text-success">
-                    ↑<span dir="ltr">1</span>
+                    ↑<span dir="ltr">&nbsp;</span>
                   </span>
                 ) : member.rank != member.previousRank ? (
                   <span className="text-danger">
-                    ↓<span dir="ltr">2</span>
+                    ↓<span dir="ltr">&nbsp;</span>
                   </span>
                 ) : (
                   ""

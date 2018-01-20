@@ -25,7 +25,7 @@ const Coc = props => (
 
           <div className="media-body">
             <h4 className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
-             Clan Level {props.clan.clanLevel}
+              Clan Level {props.clan.clanLevel}
             </h4>
             <p className="small text-muted text-reverse mb-0 text-danger">
               <span dir="ltr">{props.clan.members} / 50 Members</span>
@@ -155,13 +155,13 @@ const Coc = props => (
                   {member.clanRank}
                 </span>
 
-                {member.rank < member.previousClanRank ? (
+                {member.clanRank < member.previousClanRank ? (
                   <span className="text-success">
-                    ↑<span dir="ltr">1</span>
+                    ↑<span dir="ltr">&nbsp;</span>
                   </span>
-                ) : member.rank != member.previousClanRank ? (
+                ) : member.clanRank!= member.previousClanRank ? (
                   <span className="text-danger">
-                    ↓<span dir="ltr">2</span>
+                    ↓<span dir="ltr">&nbsp;</span>
                   </span>
                 ) : (
                   ""
@@ -228,7 +228,7 @@ Coc.getInitialProps = async function() {
      
     headers: {
     'Accept': 'application/json',
-    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjVkMDgxNTgwLTUxN2QtNDc3OC05YWQwLTAxNjk4MjBmNTU1YiIsImlhdCI6MTUxNjQyMDQ5Nywic3ViIjoiZGV2ZWxvcGVyLzRjODY5NGE4LTlmODctMzAzMy03YTUzLWMwODZjYTY4MGFlMSIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQ5LjEyNi42MC4xODQiXSwidHlwZSI6ImNsaWVudCJ9XX0.A7wIly9zmEyfAJp1TG34UBhoMWyXnKBvbLYAs_ylDJVLFMJk5tV4PAKoz29ggW9WP0441NOzLvt-9u2RBLcf3g',
+    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjNhZmZlNTA5LWM1YWItNGJlMC05M2JlLTQ4YWNjZWMxYjU4ZSIsImlhdCI6MTUxNjQzMjEzNywic3ViIjoiZGV2ZWxvcGVyLzRjODY5NGE4LTlmODctMzAzMy03YTUzLWMwODZjYTY4MGFlMSIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjQ5LjEyNi42MC4xODQiLCIxODQuNzMuMjIxLjUwIl0sInR5cGUiOiJjbGllbnQifV19.1_OYDESGQobFNKW-u2wfLeN27M_41n3DlVCSWZ5FCphW67ACt98Yw7x80CuK_Fm1db3IKFnBSsAheB1qiUDIMQ',
         }
   });
   const data = await res.json();
