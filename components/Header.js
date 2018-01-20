@@ -5,14 +5,17 @@ const linkStyle = {
 }
 
 const Header = () => (
-    <div>
-        <Link href="/">
-          <a style={linkStyle}>Clash Royale</a>
-        </Link>
-        <Link href="/coc">
-          <a style={linkStyle}>Clash of Clans</a>
-        </Link>
-    </div>
-)
+  <div>
+    <Link href="/">
+      <a style={linkStyle}>Clash Royale</a>
+    </Link>
+    <Link href="/coc">
+      <a style={linkStyle}>Clash of Clans</a>
+    </Link>
+    <Link href="/contact">
+      <a style={linkStyle}>Contact Us</a>
+    </Link>
+  </div>
+);
 
 export default Header
