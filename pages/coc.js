@@ -184,7 +184,7 @@ const Coc = props => (
                   <a>{member.name}</a>
                 </Link>
                 <br />
-                <small className="text-muted">#{member.tag}</small>
+                <small className="text-muted">{member.tag}</small>
               </td>
               <td className="text-info d-none d-md-table-cell">
                 {member.expLevel}
