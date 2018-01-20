@@ -72,7 +72,7 @@ const Coc = props => (
               <tr>
                 <th className="font-weight-normal">Clan Leader</th>
                 <td>
-                  <Link as={`/chief/Y82P99CR`} href={`/chief?id=Y82P99CR`}>
+                  <Link as={`/c/Y82P99CR`} href={`/chief?id=Y82P99CR`}>
                     <a>Mesub</a>
                   </Link>
                 </td>
@@ -142,9 +142,9 @@ const Coc = props => (
             <th className="font-weight-normal d-none d-sm-table-cell">
               Donations <br /> <small>Received</small>
             </th>
-            <th className="font-weight-normal d-none d-sm-table-cell">
+            {/* <th className="font-weight-normal d-none d-sm-table-cell">
               Clan Chest
-            </th>
+            </th> */}
           </tr>
         </thead>
         <tbody>
@@ -159,7 +159,7 @@ const Coc = props => (
                   <span className="text-success">
                     ↑<span dir="ltr">&nbsp;</span>
                   </span>
-                ) : member.clanRank!= member.previousClanRank ? (
+                ) : member.clanRank != member.previousClanRank ? (
                   <span className="text-danger">
                     ↓<span dir="ltr">&nbsp;</span>
                   </span>
@@ -169,10 +169,11 @@ const Coc = props => (
               </td>
               <td className="d-none d-xs-table-cell">
                 <img
-                  src="{member.league.iconUrls.small}"
+                  src={member.league.iconUrls.tiny}
                   alt=""
                   className="hidden-xxs-down"
                 />
+                <br />
                 {member.league.name}
               </td>
               <td>
@@ -180,7 +181,10 @@ const Coc = props => (
                   {member.role}
                 </span>
                 <br className="mb-2" />
-                <Link as={`/p/${member.tag}`} href={`/chief?id=${member.tag}`}>
+                <Link
+                  as={`/c/${member.tag.replace('#','')}`}
+                  href={`/chief?id=${member.tag.replace('#','')}`}
+                >
                   <a>{member.name}</a>
                 </Link>
                 <br />
