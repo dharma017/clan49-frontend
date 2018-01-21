@@ -12,6 +12,12 @@ const Header = () => (
     <Link href="/coc">
       <a style={linkStyle}>Clash of Clans</a>
     </Link>
+    <Link href="/currentwar">
+      <a style={linkStyle}>Current War</a>
+    </Link>
+    <Link href="/warlog">
+      <a style={linkStyle}>War Log</a>
+    </Link>
     <Link href="/contact">
       <a style={linkStyle}>Contact Us</a>
     </Link>
