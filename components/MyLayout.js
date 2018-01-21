@@ -31,13 +31,56 @@ const Layout = props => (
       .thead th {
         font-weight: bold;
       }
+      .clan-container {
+        padding: 10px;
+      }
+      .clanbadge {
+        width: 64px;
+        height: 76px;
+        float: left;
+      }
+      .float-left {
+        float: left !important;
+      }
+      .float-left h1 {
+        padding: 0px;
+        margin: 0px;
+        margin-left: 10px;
+      }
+      .float-right {
+        float: right !important;
+      }
+      .text-reverse {
+        text-align: right;
+      }
+      .text-white {
+        font-weight: bold;
+        font-size: large;
+      }
+      .display-4 {
+        font-size: 3.5rem;
+        font-weight: 300;
+        line-height: 1.1;
+      }
+      .media {
+        display: flex;
+        align-items: flex-start;
+      }
+      .media h4 {
+        padding-top: 17px;
+      }
+      .trophyicon {
+        max-height: 50px;
+        margin-top: 12px;
+        margin-right: 8px;
+      }
     `}</style>
 
     <Header />
 
     {props.children}
 
-    <footer>I`m here to stay</footer>
+    <footer>Made with passion and ♥ by drt from --49 Clan.</footer>
   </div>
 );
 

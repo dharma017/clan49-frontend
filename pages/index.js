@@ -6,6 +6,48 @@ import { Row, Col } from "antd";
 
 const Index = props => (
   <Layout>
+    <div class="clan-container">
+    <Row>
+      <Col span={8}>
+        <img
+          src={props.clan.badge.image}
+          alt=""
+          className="clanbadge rtl-mr-3 mt-3"
+        />
+        <div className="float-left">
+          <h1 className="display-4 mb-0 pt-3">{props.clan.name}</h1>
+          <p className="small text-reverse text-muted">#{props.clan.tag}</p>
+        </div>
+      </Col>
+      <Col span={8} offset={8}>
+        <div className="float-right py-3 media ml-md-4">
+          <img
+            src="https://spy.deckshop.pro/img/cr/trophies.png"
+            alt=""
+            className="trophyicon d-none d-sm-flex rtl-mr-2"
+          />
+
+          <div className="media-body">
+            <h4 className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
+              {props.clan.score}
+            </h4>
+            <p className="small text-muted text-reverse mb-0 text-danger">
+              <span dir="ltr">{props.clan.memberCount} / 50</span>
+            </p>
+          </div>
+        </div>
+      </Col>
+    </Row>
+    <Row>
+      <Col span={24}>
+        <div className="pb-2">
+          <p className="text-white border p-3 py-2 border-dark mb-0">
+            {props.clan.description}
+          </p>
+        </div>
+      </Col>
+    </Row>
+    </div>
     <div className="cr-clan">
       <Row className="cr-row">
         <Col className="cr-admission" span={12}>
