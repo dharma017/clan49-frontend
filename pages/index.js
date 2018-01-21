@@ -6,7 +6,7 @@ import { Row, Col } from "antd";
 
 const Index = props => (
   <Layout>
-    <div class="clan-container">
+    <div className="clan-container">
     <Row>
       <Col span={8}>
         <img
