@@ -1,26 +1,51 @@
 import Link from 'next/link'
 
+import { Layout,Menu, Icon } from "antd";
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
 const linkStyle = {
   marginRight: 15
 }
 
 const Header = () => (
-  <div>
-    <Link href="/">
-      <a style={linkStyle}>Clash Royale</a>
-    </Link>
-    <Link href="/coc">
-      <a style={linkStyle}>Clash of Clans</a>
-    </Link>
-    <Link href="/currentwar">
-      <a style={linkStyle}>Current War</a>
-    </Link>
-    <Link href="/warlog">
-      <a style={linkStyle}>War Log</a>
-    </Link>
-    <Link href="/contact">
-      <a style={linkStyle}>Contact Us</a>
-    </Link>
+  <div id="menu">
+    <Menu
+      // onClick={this.handleClick}
+      // selectedKeys={[this.state.current]}
+      mode="horizontal"
+    >
+      <Menu.Item key="cr">
+        <Link href="/">
+          <a style={linkStyle}>Clash Royale</a>
+        </Link>
+      </Menu.Item>
+      <SubMenu title={<span>Clash of Clans</span>}>
+        <Menu.Item key="coc">
+          <Link href="/coc">
+            <a style={linkStyle}>Clan</a>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="currentwar">
+          <Link href="/currentwar">
+            <a style={linkStyle}>Current War</a>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="warlog">
+          <Link href="/warlog">
+            <a style={linkStyle}>War Log</a>
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+      <Menu.Item key="about">
+        <Link href="/about">
+          <a style={linkStyle}>About</a>
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="app" disabled>
+        <Icon type="appstore" />Apps
+      </Menu.Item>
+    </Menu>
   </div>
 );
 
