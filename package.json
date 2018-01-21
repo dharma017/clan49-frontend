@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "heroku-postbuild": "npm run build"
+    "prestart": "next build",
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "next build"
   },
   "keywords": [],
   "author": "",
