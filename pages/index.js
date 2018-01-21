@@ -1,236 +1,41 @@
 import Layout from "../components/MyLayout.js";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
+import { Table, Icon, Divider } from "antd";
+import { Row, Col } from "antd";
 
 const Index = props => (
   <Layout>
-    <div className="jumbotron jumbotron-fluid bg-dark py-0 mb-0">
-      <div className="container clearfix">
-        <img
-          src={props.clan.badge.image}
-          alt=""
-          className="clanbadge rtl-mr-3 mt-3"
-        />
-        <div className="float-left">
-          <h1 className="text-white display-4 mb-0 pt-3">{props.clan.name}</h1>
-          <p className="small text-reverse text-muted">#{props.clan.tag}</p>
-        </div>
-
-        <div className="float-right py-3 media ml-md-4">
-          <img
-            src="https://spy.deckshop.pro/img/cr/trophies.png"
-            alt=""
-            className="trophyicon d-none d-sm-flex rtl-mr-2"
+    <div className="cr-clan">
+      <Row className="cr-row">
+        <Col className="cr-admission" span={12}>
+          <Table
+            size="small"
+            columns={props.columns_a}
+            dataSource={props.dataSource}
+            pagination={{ pageSize: 50, hideOnSinglePage: true }}
           />
-
-          <div className="media-body">
-            <h4 className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
-              {props.clan.score}
-            </h4>
-            <p className="small text-muted text-reverse mb-0 text-danger">
-              <span dir="ltr">{props.clan.memberCount} / 50</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="container pb-2">
-        <p className="text-white border p-3 py-2 border-dark mb-0">
-          {props.clan.description}
-        </p>
-      </div>
+        </Col>
+        <Col className="cr-info" span={12}>
+          <Table
+            size="small"
+            columns={props.columns_b}
+            dataSource={props.dataSource}
+            pagination={{ pageSize: 50, hideOnSinglePage: true }}
+          />
+        </Col>
+      </Row>
+      <Row className="cr-members">
+        <Col span={24}>
+          <Table
+            dataSource={props.memberDataSource}
+            columns={props.memberColumns}
+            pagination={{ pageSize: 50, hideOnSinglePage: true }}
+            scroll={{ y: 1240 }}
+          />
+        </Col>
+      </Row>
     </div>
-
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6">
-          <table className="table table-inverse">
-            <tbody>
-              <tr>
-                <th colSpan={666} className="bg-dark text-muted">
-                  Clan Admission
-                </th>
-              </tr>
-              <tr>
-                <th className="font-weight-normal">Members</th>
-                <td className="text-danger">
-                  <span dir="ltr">{props.clan.memberCount} / 50</span>
-                </td>
-              </tr>
-              <tr>
-                <th className="font-weight-normal">Type</th>
-                <td>
-                  <span className="badge badge-dark">{props.clan.type}</span>
-                </td>
-              </tr>
-              <tr className="d-xs-none">
-                <th className="font-weight-normal">Clan Score</th>
-                <td className="text-warning">
-                  <span dir="ltr">{props.clan.score}</span>
-                </td>
-              </tr>
-              <tr>
-                <th className="font-weight-normal">Required Trophies</th>
-                <td className="text-info">
-                  <span dir="ltr">{props.clan.requiredScore}</span>
-                </td>
-              </tr>
-              <tr>
-                <th className="font-weight-normal">Clan Leader</th>
-                <td>
-                  <Link as={`/p/RCCV8C2`} href={`/player?id=RCCV8C2`}>
-                    <a>Sujendra shrest</a>
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="col-md-6">
-          <table className="table table-inverse">
-            <tbody>
-              <tr>
-                <th colSpan={666} className="bg-dark text-muted">
-                  Clan Info
-                </th>
-              </tr>
-              <tr>
-                <th className="font-weight-normal">Location</th>
-                <td>{props.clan.location.name}</td>
-              </tr>
-
-              <tr>
-                <th className="font-weight-normal">Donations Per Week</th>
-                <td className="text-success">
-                  <span dir="ltr">{props.clan.donations}</span>
-                </td>
-              </tr>
-              <tr>
-                <th className="font-weight-normal">Clan Chest Status</th>
-                <td>
-                  <span className="text-muted">
-                    {props.clan.clanChest.status}
-                  </span>
-                </td>
-              </tr>
-              <tr className="text-muted">
-                <th className="font-weight-normal">Elders</th>
-                <td>
-                  <span dir="ltr">19</span>
-                </td>
-              </tr>
-              <tr className="text-muted">
-                <th className="font-weight-normal">Co-leaders</th>
-                <td className="text-info">
-                  <span dir="ltr">17</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <table className="table table-inverse table-complex">
-        <thead>
-          <tr className="font-weight-normal text-muted">
-            <th className="font-weight-normal">
-              <span className="d-sm-none">#</span>
-              <span className="d-none d-sm-inline">Rank</span>
-            </th>
-            <th className="font-weight-normal d-none d-xs-table-cell">Arena</th>
-            <th className="font-weight-normal">
-              Player <br /> <small>Tag</small>
-            </th>
-            <th className="font-weight-normal d-none d-md-table-cell">
-              Exp. Level
-            </th>
-            <th className="font-weight-normal">Trophies</th>
-            <th className="font-weight-normal d-none d-sm-table-cell">
-              Donations <br /> <small>Received</small>
-            </th>
-            <th className="font-weight-normal d-none d-sm-table-cell">
-              Clan Chest
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.clan.members.map(member => (
-            <tr key={member.tag} className="tr-hilite">
-              <td className="text-muted">
-                <span className="h4" dir="ltr">
-                  {member.rank}
-                </span>
-
-                {member.rank < member.previousRank ? (
-                  <span className="text-success">
-                    ↑<span dir="ltr">&nbsp;</span>
-                  </span>
-                ) : member.rank != member.previousRank ? (
-                  <span className="text-danger">
-                    ↓<span dir="ltr">&nbsp;</span>
-                  </span>
-                ) : (
-                  ""
-                )}
-              </td>
-              <td className="d-none d-xs-table-cell">
-                {/* <img
-                  src="/img/league/Challenger-1.png"
-                  alt=""
-                  className="hidden-xxs-down"
-                /> */}
-                {member.arena.name}
-              </td>
-              <td>
-                <span className="badge badge-info text-dark">
-                  {member.role}
-                </span>
-                <br className="mb-2" />
-                <Link 
-                  as={`/p/${member.tag}`}
-                  href={`/player?id=${member.tag}`}
-                >
-                  <a>{member.name}</a>
-                </Link> 
-                <br />
-                <small className="text-muted">#{member.tag}</small>
-              </td>
-              <td className="text-info d-none d-md-table-cell">
-                {member.expLevel}
-              </td>
-              <td className="text-warning">
-                <strong dir="ltr">{member.trophies}</strong> <br />
-                <small className="text-muted" dir="ltr">
-                  2 046
-                </small>
-              </td>
-              <td className="text-muted d-none d-sm-table-cell">
-                <span className="text-success" dir="ltr">
-                  {member.donations}
-                </span>
-                <br />
-                <small>
-                  →<span dir="ltr">{member.donationsReceived}</span>
-                </small>
-              </td>
-              <td className="text-muted d-none d-sm-table-cell">
-                <span className="text-white" dir="ltr">
-                  {member.clanChestCrowns}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-    {/* <ul>
-      {props.shows.map(({show}) => (
-        <li key={show.id}>
-          <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul> */}
   </Layout>
 );
 
@@ -244,12 +49,211 @@ Index.getInitialProps = async function() {
   });
   const data = await res.json();
 
+const memberDataSource = data.members.map((member, index) => ({
+  key: index,
+  rank: member.rank,
+  arena: member.arena.name,
+  expLevel: member.expLevel,
+  role: member.role,
+  tag: member.tag,
+  name: member.name,
+  trophiesContribution: member.trophies,
+  donations: member.donations,
+  donationsReceived: member.donationsReceived,
+  clanChestCrowns: member.clanChestCrowns
+}));
+
+const memberColumns = [
+  {
+    title: "Rank",
+    dataIndex: "rank",
+    key: "rank",
+    width: "10%",
+    sorter: (a, b) => a.rank - b.rank
+  },
+  {
+    title: "Arena",
+    dataIndex: "arena",
+    key: "arena",
+    width: "20%"
+  },
+  {
+    title: "Player Tag",
+    dataIndex: "name",
+    key: "name",
+    width: "20%",
+    render: (text, record) => (
+      <span>
+        {record.role}
+        <Divider type="horizontal" />
+        <Link as={`/p/${record.tag}`} href={`/player?id=${record.tag}`}>
+          <a>{record.name}</a>
+        </Link>
+        <Divider type="horizontal" />
+        #{record.tag}
+      </span>
+    ),
+    filters: [
+      {
+        text: "Leader",
+        value: "leader"
+      },
+      {
+        text: "Coleader",
+        value: "coLeader"
+      },
+      {
+        text: "Elder",
+        value: "elder"
+      }
+    ],
+    filterMultiple: false,
+    onFilter: (value, record) => record.role.indexOf(value) === 0
+    // sorter: (a, b) => a.name.length - b.name.length,
+  },
+  {
+    title: "Exp. Level",
+    dataIndex: "expLevel",
+    key: "expLevel",
+    width: "10%"
+  },
+  {
+    title: "Trophies Contribution",
+    dataIndex: "trophiesContribution",
+    key: "trophiesContribution",
+    width: "20%",
+    sorter: (a, b) => a.trophies - b.trophies
+  },
+  {
+    title: "Donations Recieved",
+    dataIndex: "donationsReceived",
+    key: "donationsReceived",
+    width: "10%",
+    render: (text, record) => (
+      <span>
+        {record.donations}
+        <Divider type="horizontal" />
+        → {record.donationsReceived}
+      </span>
+    ),
+    sorter: (a, b) => a.donationsReceived - b.donationsReceived
+  },
+  {
+    title: "Clan Chest",
+    dataIndex: "clanChestCrowns",
+    key: "clanChestCrowns",
+    width: "10%",
+    defaultSortOrder: "descend",
+    sorter: (a, b) => a.clanChestCrowns - b.clanChestCrowns
+  }
+];
+
+// In the fifth row, other columns are merged into first column
+// by setting it's colSpan to be 0
+const renderContent = (value, row, index) => {
+  const obj = {
+    children: value,
+    props: {},
+  };
+  // console.log(value,row,index);
+  // if (index === 0) {
+  //   obj.children = obj.children + ' / 50';
+  // }
+  return obj;
+};
+
+const columns_a = [
+  {
+    title: "Clan Admission",
+    colSpan: 2,
+    dataIndex: "caKey",
+    render: (value, row, index) => {
+      const obj = {
+        children: value,
+        props: {}
+      };
+      return obj;
+    }
+  },
+  {
+    title: "Clan Admission",
+    colSpan: 0,
+    dataIndex: "caValue",
+    render: renderContent
+  }
+];
+
+const columns_b = [
+  {
+    title: "Clan Info",
+    colSpan: 2,
+    dataIndex: "ciKey",
+    render: (value, row, index) => {
+      const obj = {
+        children: value,
+        props: {}
+      };
+      return obj;
+    }
+  },
+  {
+    title: "Clan Info",
+    colSpan: 0,
+    dataIndex: "ciValue",
+    render: renderContent
+  }
+];
+
+const dataSource = [
+  {
+    key: "1",
+    caKey: "Members",
+    caValue: data.memberCount + " / 50",
+    ciKey: "Location",
+    ciValue: data.location.name
+  },
+  {
+    key: "2",
+    caKey: "Type",
+    caValue: data.type,
+    ciKey: "Donations Per Week",
+    ciValue: data.donations 
+  },
+  {
+    key: "3",
+    caKey: "Required Trophies",
+    caValue: data.requiredScore,
+    ciKey: "Clan Chest Status",
+    ciValue: data.clanChest.status
+  },
+  {
+    key: "4",
+    caKey: "Clan Leader",
+    caValue: "Sujen",
+    ciKey: "Elders",
+    ciValue: 25
+  },
+  {
+    key: "5",
+    caKey: "Trophy Range",
+    caValue: '688 – 4 082',
+    ciKey: "Co-leaders",
+    ciValue: 18
+  }
+];
+
+
   // console.log(`Show data fetched. Count: ${data.length}`)
   // console.log(`Show data fetched. Count: ${data}`);
 
-  return {
-    clan: data
-  };
+  return { 
+     clan: data,
+     dataSource : dataSource,
+     columns_a : columns_a,
+     columns_b : columns_b,
+     memberDataSource: memberDataSource, 
+     memberColumns: memberColumns
+     };
 };
 
 export default Index;

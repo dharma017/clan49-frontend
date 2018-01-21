@@ -10,6 +10,7 @@ const layoutStyle = {
 const Layout = props => (
   <div id="container" style={layoutStyle}>
     <Head>
+      <title>--49 Clan Statistics</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
       <link
@@ -22,13 +23,21 @@ const Layout = props => (
       body {
         // background-color: red;
       }
+      .cr-admission,
+      .cr-info,
+      .cr-members {
+        padding: 10px;
+      }
+      .thead th {
+        font-weight: bold;
+      }
     `}</style>
 
     <Header />
 
     {props.children}
 
-    <footer>{"I`m here to stay"}</footer>
+    <footer>I`m here to stay</footer>
   </div>
 );
 
