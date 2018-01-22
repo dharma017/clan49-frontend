@@ -4,6 +4,8 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Table, Icon, Divider } from "antd";
 import { Row, Col } from "antd";
+import ChestCycle from "../components/ChestCycle.js";
+import PlayerStats from "../components/PlayerStats.js";
 
 class RoyalePlayer extends React.Component {
   static async getInitialProps(context) {
@@ -23,330 +25,53 @@ class RoyalePlayer extends React.Component {
   }
 
   render() {
-    console.log(this.props.show);
-    return (
-      <Layout>
-          <h1>{this.props.show.name}</h1>
-          <div className="container">
-            <div className="card bg-dark mb-3">
-              <div className="card-body">
-                <h3 className="card-title text-white">Upcoming chests </h3>
+    // console.log(this.props.show);
+    return <Layout>
+        <Row>
+          <Col span={8}>
+            <img src={this.props.show.clan.badge.image} alt="" className="clanbadge rtl-mr-3 mt-3" />
+            <div className="float-left">
+              <h1 className="display-4 mb-0 pt-3">
+                {this.props.show.name}
+              </h1>
+              <p className="small text-reverse text-muted">
+                #{this.props.show.tag}
+              </p>
+            </div>
+          </Col>
+          <Col span={8} offset={8}>
+            <div className="float-right py-3 media ml-md-4">
+              <img src="https://spy.deckshop.pro/img/cr/trophies.png" alt="" className="trophyicon d-none d-sm-flex rtl-mr-2" />
 
-                {this.props.show.chestCycle.upcoming.map((chest, i) => (
-                  <div
-                    className={"chest-container chest-container-" + chest}
-                    key={i}
-                  >
-                    <img
-                      src={
-                        "https://spy.deckshop.pro/img/chests/" + chest + ".png"
-                      }
-                      alt=""
-                      className={"chest chest-" + chest}
-                    />
-
-                    <span className="text-white h4 text-reverse" dir="ltr">
-                      +{i}
-                    </span>
-                  </div>
-                ))}
-
-                <div className="chest-container">
-                  <img
-                    src="https://spy.deckshop.pro/img/chests/magical.png"
-                    alt=""
-                    className="chest chest-magical"
-                  />
-
-                  <span className="text-white h4 text-reverse" dir="ltr">
-                    +{this.props.show.chestCycle.magical}
-                  </span>
-                </div>
-
-                <div className="chest-container">
-                  <img
-                    src="https://spy.deckshop.pro/img/chests/epic.png"
-                    alt=""
-                    className="chest chest-epic"
-                  />
-
-                  <span className="text-white h4 text-reverse" dir="ltr">
-                    +{this.props.show.chestCycle.epic}
-                  </span>
-                </div>
-
-                <div className="chest-container">
-                  <img
-                    src="https://spy.deckshop.pro/img/chests/giant.png"
-                    alt=""
-                    className="chest chest-giant"
-                  />
-
-                  <span className="text-white h4 text-reverse" dir="ltr">
-                    +{this.props.show.chestCycle.giant}
-                  </span>
-                </div>
-
-                <div className="chest-container">
-                  <img
-                    src="https://spy.deckshop.pro/img/chests/legendary.png"
-                    alt=""
-                    className="chest chest-legendary"
-                  />
-
-                  <span className="text-white h4 text-reverse" dir="ltr">
-                    +{this.props.show.chestCycle.legendary}
-                  </span>
-                </div>
-
-                <div className="chest-container">
-                  <img
-                    src="https://spy.deckshop.pro/img/chests/smc.png"
-                    alt=""
-                    className="chest chest-smc"
-                  />
-
-                  <span className="text-white h4 text-reverse" dir="ltr">
-                    +{this.props.show.chestCycle.superMagical}
-                  </span>
-                </div>
+              <div className="media-body">
+                <h4 className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
+                  {this.props.show.trophies}
+                </h4>
+                <p className="small text-muted text-reverse mb-0">
+                  <span dir="ltr">{this.props.show.stats.maxTrophies}</span>
+                </p>
               </div>
             </div>
+          </Col>
+        </Row>
 
-            <div className="clearfix">
-              <div className="clan_box d-flex d-md-none w-100">
-                <div className="clearfix">
-                  <a
-                    className="text-white"
-                    href={"/clan/2GPUC2#" + this.props.show.tag}
-                  >
-                    <img
-                      src={this.props.show.clan.badge.image}
-                      alt={this.props.show.clan.badge.name}
-                      className="clanbadge rtl-mr-3"
-                    />
-                  </a>
-
-                  <h4 className="text-white pt-2 float-left">
-                    <a
-                      className="text-white"
-                      href={"/clan/2GPUC2#" + this.props.show.tag}
-                    >
-                      {this.props.show.clan.name}
-                    </a>
-                  </h4>
-
-                  <p className="text-muted mb-0">{this.props.show.clan.role}</p>
-                </div>
-              </div>
+        <Row>
+          <Col span={24}>
+            <div className="upcoming-container">
+              <ChestCycle chestCycle={this.props.show.chestCycle} />
             </div>
+          </Col>
+        </Row>
 
-            <div className="row">
-              <div className="col-md-6">
-                <table className="table table-inverse">
-                  <tbody>
-                    <tr>
-                      <th colSpan={"666"} className="bg-dark text-muted">
-                        Player info
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Level</th>
-                      <td className="text-info">
-                        {this.props.show.stats.level}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Current Trophies</th>
-                      <td className="text-warning">
-                        <span dir="ltr">{this.props.show.trophies}</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Personal Best</th>
-                      <td className="text-muted">
-                        <span dir="ltr">
-                          {this.props.show.stats.maxTrophies}
-                        </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th className="font-weight-normal">Arena</th>
-                      <td className="text-white">
-                        {this.props.show.arena.arena}
-                      </td>
-                    </tr>
-                    <tr>
-                      <th colSpan={"666"} className="bg-dark text-muted">
-                        Ladder + Challenges
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Wins</th>
-                      <td className="text-success">
-                        <span dir="ltr">{this.props.show.games.win}</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Three Crown Wins</th>
-                      <td>
-                        <span dir="ltr">
-                          {this.props.show.stats.threeCrownWins}
-                        </span>{" "}
-                        <small className="text-muted">
-                          (<span dir="ltr">67.5%</span>)
-                        </small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Losses</th>
-                      <td className="text-danger">
-                        <span dir="ltr">{this.props.show.games.losses}</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Battle Count</th>
-                      <td>
-                        <span dir="ltr">{this.props.show.games.total}</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="text-muted font-weight-normal">Draws</th>
-                      <td className="text-muted">
-                        <span dir="ltr">{this.props.show.games.draws}</span>{" "}
-                        <small>
-                          (<span dir="ltr">52.3%</span>)
-                        </small>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="text-muted font-weight-normal">
-                        Win Rate
-                      </th>
-                      <td className="text-muted">
-                        <span dir="ltr">53.9%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="text-muted font-weight-normal">
-                        Days Spent Playing
-                      </th>
-                      <td className="text-muted">
-                        <a
-                          href="#"
-                          className="spoiler-btn"
-                          data-target="daysSpentPlaying"
-                        >
-                          <span className="d-none d-sm-inline d-md-none d-lg-inline">
-                            Click to reveal
-                          </span>
-                          <span className="d-sm-none d-md-inline d-lg-none">
-                            Reveal
-                          </span>
-                        </a>
-                        <div
-                          className="spoiler-reveal"
-                          data-spoiler-id="daysSpentPlaying"
-                        >
-                          <span dir="ltr">~9.9</span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="col-md-6">
-                <table className="table table-inverse">
-                  <tbody>
-                    <tr>
-                      <th colSpan={"666"} className="bg-dark text-muted">
-                        Challenge
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Max Wins</th>
-                      <td>
-                        <span dir="ltr">
-                          {this.props.show.stats.challengeMaxWins}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Cards won</th>
-                      <td className="text-success">
-                        <span dir="ltr">
-                          {this.props.show.stats.challengeCardsWon}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal text-muted">
-                        As If Played At Least
-                      </th>
-                      <td className="text-muted">
-                        <span dir="ltr">2+</span> GCs
-                      </td>
-                    </tr>
-                    <tr>
-                      <th colSpan={"666"} className="bg-dark text-muted">
-                        Tournament
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Cards Won</th>
-                      <td className="text-success">
-                        <span dir="ltr">
-                          {this.props.show.stats.tournamentCardsWon}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Battle Count</th>
-                      <td>
-                        <span dir="ltr">
-                          {this.props.show.games.tournamentGames}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th colSpan={"666"} className="bg-dark text-muted">
-                        Clan + Donations
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal">Total Donations</th>
-                      <td className="text-success">
-                        <span dir="ltr">
-                          {this.props.show.stats.totalDonations}
-                        </span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal text-muted">
-                        Donations
-                      </th>
-                      <td className="text-muted">
-                        <span dir="ltr">{this.props.show.stats.donations}</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="font-weight-normal text-muted">
-                        Donations Received
-                      </th>
-                      <td className="text-muted">
-                        <span dir="ltr">
-                          {this.props.show.stats.donationsReceived}
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        <Row>
+          <Col span={24}>
+            <div className="upcoming-container">
+              <PlayerStats player={this.props.show} />
             </div>
-          </div>
-        </Layout>
-    );
+          </Col>
+        </Row>
+
+      </Layout>;
   }
 }
 export default RoyalePlayer;

@@ -4,10 +4,11 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Table, Icon, Divider } from "antd";
 import { Row, Col } from "antd";
-
-// import CustomFetch from '../api/FetchService';
+import PlayerRank from "../components/PlayerRank.js";
+import CrClanStats from "../components/CrClanStats.js";
 
 class ClashRoyale extends React.Component {
+
   static async getInitialProps({ store, req, res }) {
     const resp = await fetch("https://api.cr-api.com/clan/2GPUC2", {
       headers: {
@@ -25,6 +26,7 @@ class ClashRoyale extends React.Component {
     const memberDataSource = this.props.clan.members.map((member, index) => ({
       key: index.toString(),
       rank: member.rank,
+      previousRank: member.previousRank,
       arena: member.arena.name,
       expLevel: member.expLevel,
       role: member.role,
@@ -40,18 +42,19 @@ class ClashRoyale extends React.Component {
       {
         title: "Rank",
         dataIndex: "rank",
-        width: "10%",
-        sorter: (a, b) => a.rank - b.rank
-      },
-      {
-        title: "Arena",
-        dataIndex: "arena",
-        width: "20%"
+        width: "1%",
+        defaultSortOrder: "asc",
+        sorter: (a, b) => a.rank - b.rank,
+        render: (text,record) => (
+            <span className="h4" dir="ltr">
+              <PlayerRank record={record} />
+            </span>
+        )
       },
       {
         title: "Player Tag",
         dataIndex: "name",
-        width: "20%",
+        width: "3%",
         render: (text, record) => (
           <span>
             {record.role}
@@ -82,20 +85,32 @@ class ClashRoyale extends React.Component {
         sorter: (a, b) => a.name.length - b.name.length
       },
       {
-        title: "Exp. Level",
-        dataIndex: "expLevel",
-        width: "10%"
+        title: "Clan Chest",
+        dataIndex: "clanChestCrowns",
+        width: "1%",
+        // defaultSortOrder: "descend",
+        sorter: (a, b) => a.clanChestCrowns - b.clanChestCrowns
       },
       {
-        title: "Trophies Contribution",
+        title: "Arena",
+        dataIndex: "arena",
+        width: "1%"
+      },
+      {
+        title: "Exp. Level",
+        dataIndex: "expLevel",
+        width: "1%"
+      },
+      {
+        title: "Trophies",
         dataIndex: "trophiesContribution",
-        width: "20%",
+        width: "1%",
         sorter: (a, b) => a.trophies - b.trophies
       },
       {
         title: "Donations Recieved",
         dataIndex: "donationsReceived",
-        width: "10%",
+        width: "3%",
         render: (text, record) => (
           <span>
             {record.donations}
@@ -104,69 +119,6 @@ class ClashRoyale extends React.Component {
           </span>
         ),
         sorter: (a, b) => a.donationsReceived - b.donationsReceived
-      },
-      {
-        title: "Clan Chest",
-        dataIndex: "clanChestCrowns",
-        width: "10%",
-        // defaultSortOrder: "descend",
-        sorter: (a, b) => a.clanChestCrowns - b.clanChestCrowns
-      }
-    ];
-
-    // In the fifth row, other columns are merged into first column
-    // by setting it's colSpan to be 0
-    const renderContent = (value, row, index) => {
-      const obj = {
-        children: value,
-        props: {}
-      };
-      // console.log(value,row,index);
-      // if (index === 0) {
-      //   obj.children = obj.children + ' / 50';
-      // }
-      return obj;
-    };
-
-    const columns_a = [
-      {
-        title: "Clan Admission",
-        colSpan: 2,
-        dataIndex: "caKey",
-        render: (value, row, index) => {
-          const obj = {
-            children: value,
-            props: {}
-          };
-          return obj;
-        }
-      },
-      {
-        title: "Clan Admission",
-        colSpan: 0,
-        dataIndex: "caValue",
-        render: renderContent
-      }
-    ];
-
-    const columns_b = [
-      {
-        title: "Clan Info",
-        colSpan: 2,
-        dataIndex: "ciKey",
-        render: (value, row, index) => {
-          const obj = {
-            children: value,
-            props: {}
-          };
-          return obj;
-        }
-      },
-      {
-        title: "Clan Info",
-        colSpan: 0,
-        dataIndex: "ciValue",
-        render: renderContent
       }
     ];
 
@@ -208,18 +160,15 @@ class ClashRoyale extends React.Component {
       }
     ];
 
-    return (
-      <Layout>
+    return <Layout>
         <div className="clan-container">
           <Row>
             <Col span={8}>
-              <img
-                src={this.props.clan.badge.image}
-                alt=""
-                className="clanbadge rtl-mr-3 mt-3"
-              />
+              <img src={this.props.clan.badge.image} alt="" className="clanbadge rtl-mr-3 mt-3" />
               <div className="float-left">
-                <h1 className="display-4 mb-0 pt-3">{this.props.clan.name}</h1>
+                <h1 className="display-4 mb-0 pt-3">
+                  {this.props.clan.name}
+                </h1>
                 <p className="small text-reverse text-muted">
                   #{this.props.clan.tag}
                 </p>
@@ -227,18 +176,16 @@ class ClashRoyale extends React.Component {
             </Col>
             <Col span={8} offset={8}>
               <div className="float-right py-3 media ml-md-4">
-                <img
-                  src="https://spy.deckshop.pro/img/cr/trophies.png"
-                  alt=""
-                  className="trophyicon d-none d-sm-flex rtl-mr-2"
-                />
+                <img src="https://spy.deckshop.pro/img/cr/trophies.png" alt="" className="trophyicon d-none d-sm-flex rtl-mr-2" />
 
                 <div className="media-body">
                   <h4 className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
                     {this.props.clan.score}
                   </h4>
                   <p className="small text-muted text-reverse mb-0 text-danger">
-                    <span dir="ltr">{this.props.clan.memberCount} / 50</span>
+                    <span dir="ltr">
+                      {this.props.clan.memberCount} / 50
+                    </span>
                   </p>
                 </div>
               </div>
@@ -255,36 +202,14 @@ class ClashRoyale extends React.Component {
           </Row>
         </div>
         <div className="cr-clan">
-          <Row className="cr-row">
-            <Col className="cr-admission" span={12}>
-              <Table
-                size="small"
-                columns={columns_a}
-                dataSource={dataSource}
-                pagination={{ pageSize: 50, hideOnSinglePage: true }}
-              />
-            </Col>
-            <Col className="cr-info" span={12}>
-              <Table
-                size="small"
-                columns={columns_b}
-                dataSource={dataSource}
-                pagination={{ pageSize: 50, hideOnSinglePage: true }}
-              />
-            </Col>
-          </Row>
-          <Row className="cr-members">
-            <Col span={24}>
-              <Table
-                dataSource={memberDataSource}
-                columns={memberColumns}
-                pagination={{ pageSize: 50, hideOnSinglePage: true }}
-              />
-            </Col>
-          </Row>
+          <div className="clan-stats">
+            <CrClanStats clan={this.props.clan} />
+          </div>
+          <div className="clan-members">
+            <Table bordered size="middle" dataSource={memberDataSource} columns={memberColumns} scroll={{ x: 1300 }} pagination={{ pageSize: 50, hideOnSinglePage: true }} />
+          </div>
         </div>
-      </Layout>
-    );
+      </Layout>;
   }
 }
 export default ClashRoyale;

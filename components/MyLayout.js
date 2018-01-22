@@ -31,6 +31,9 @@ const Layout = props => (
       .thead th {
         font-weight: bold;
       }
+      .footer {
+        margin-top: 10px;
+      }
       .clan-container {
         padding: 10px;
       }
@@ -74,13 +77,44 @@ const Layout = props => (
         margin-top: 12px;
         margin-right: 8px;
       }
+      .text-danger {
+        color: #dc3545 !important;
+      }
+      .text-muted {
+          color: #7a858c !important;
+      } 
+      .text-reverse {
+          text-align: right;
+      }
+      .text-success {
+        color: #28a745 !important;
+      }
+      .text-warning {
+        color: #ffc107 !important;
+      }
+      .h4,
+      h4 {
+        font-size: 1.5rem;
+      }
+      .upcoming-container img {
+        width: 50px;
+        height: 50 px;
+      }
+      .clan-members{
+        margin-top : 20px;
+      }
+      table tr, table th {
+        text-align: center !important;
+      }
     `}</style>
 
     <Header />
 
     {props.children}
 
-    <footer>Made with passion and ♥ by drt from --49 Clan.</footer>
+    <div className="footer">
+      <footer>Made with passion and ♥ by drt from --49 Clan.</footer>
+    </div>
   </div>
 );
 
