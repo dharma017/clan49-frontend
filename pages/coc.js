@@ -215,24 +215,20 @@ const Coc = props => (
         </tbody>
       </table>
     </div>
-    {/* <ul>
-      {props.shows.map(({show}) => (
-        <li key={show.id}>
-          <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul> */}
+   
   </Layout>
 );
 
 Coc.getInitialProps = async function() {
   const res = await fetch("https://api.clashofclans.com/v1/clans/"+encodeURIComponent('#YPL9RJ2R'), {
-     
+    //  credentials: 'include',
+    //  mode: 'no-cors',
     headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept",
+      // 'Vary': 'Origin',
     'Accept': 'application/json',
-    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg5MTQxODAxLTA0YjUtNDMzZi1iMDY5LTNmNDMwYTk4ZWNkNiIsImlhdCI6MTUxNjUyMDIzMywic3ViIjoiZGV2ZWxvcGVyLzRjODY5NGE4LTlmODctMzAzMy03YTUzLWMwODZjYTY4MGFlMSIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjM2LjI1Mi4xNjQuMjQ3Il0sInR5cGUiOiJjbGllbnQifV19.GHWqw0feyfKNJfrLszx9Ora_pbqwcC0vaGiW6z_GCxrRpb8neGW6YCgGoF0AGPxdG9DVSpZ4-qeDduv8xXwYhw',
+    'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImRhMjAxMTY2LWJiNmItNDhjOS04MDI5LTQ4ZThjMDg0YmQ5OCIsImlhdCI6MTUxNjU5MzA0Niwic3ViIjoiZGV2ZWxvcGVyLzRjODY5NGE4LTlmODctMzAzMy03YTUzLWMwODZjYTY4MGFlMSIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjExMC40NC4xMTMuMTIwIl0sInR5cGUiOiJjbGllbnQifV19.5tdzm8EVhn9fCzWyw04vTxLk_pEdnzwCQbwNLDCcwwqszVk_cdz__9xAeeciKwKQlqRDOlp9UiJ7_laNycrPCQ',
         }
   });
   const data = await res.json();

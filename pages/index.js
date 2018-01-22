@@ -73,7 +73,7 @@ const Index = props => (
             dataSource={props.memberDataSource}
             columns={props.memberColumns}
             pagination={{ pageSize: 50, hideOnSinglePage: true }}
-            scroll={{ y: 1240 }}
+            // scroll={{ y: 1240 }}
           />
         </Col>
       </Row>
@@ -89,6 +89,7 @@ Index.getInitialProps = async function() {
       "Content-Type": "application/json"
     }
   });
+  console.log('api hit');
   const data = await res.json();
 
 const memberDataSource = data.members.map((member, index) => ({
@@ -185,7 +186,7 @@ const memberColumns = [
     dataIndex: "clanChestCrowns",
     key: "clanChestCrowns",
     width: "10%",
-    defaultSortOrder: "descend",
+    // defaultSortOrder: "descend",
     sorter: (a, b) => a.clanChestCrowns - b.clanChestCrowns
   }
 ];
