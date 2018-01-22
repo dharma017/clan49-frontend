@@ -7,7 +7,7 @@ import { Row, Col } from "antd";
 
 // import CustomFetch from '../api/FetchService';
 
-class ClashRoyale extends React.Component {
+class Clash extends React.Component {
   static async getInitialProps({ store, req, res }) {
     const resp = await fetch("https://api.cr-api.com/clan/2GPUC2", {
       headers: {
@@ -79,7 +79,7 @@ class ClashRoyale extends React.Component {
         ],
         filterMultiple: false,
         onFilter: (value, record) => record.role.indexOf(value) === 0,
-        sorter: (a, b) => a.name.length - b.name.length
+        sorter: (a, b) => a.name.length - b.name.length,
       },
       {
         title: "Exp. Level",
@@ -208,16 +208,11 @@ class ClashRoyale extends React.Component {
       }
     ];
 
-    return (
-      <Layout>
+    return <Layout>
         <div className="clan-container">
           <Row>
             <Col span={8}>
-              <img
-                src={this.props.clan.badge.image}
-                alt=""
-                className="clanbadge rtl-mr-3 mt-3"
-              />
+              <img src={this.props.clan.badge.image} alt="" className="clanbadge rtl-mr-3 mt-3" />
               <div className="float-left">
                 <h1 className="display-4 mb-0 pt-3">{this.props.clan.name}</h1>
                 <p className="small text-reverse text-muted">
@@ -227,11 +222,7 @@ class ClashRoyale extends React.Component {
             </Col>
             <Col span={8} offset={8}>
               <div className="float-right py-3 media ml-md-4">
-                <img
-                  src="https://spy.deckshop.pro/img/cr/trophies.png"
-                  alt=""
-                  className="trophyicon d-none d-sm-flex rtl-mr-2"
-                />
+                <img src="https://spy.deckshop.pro/img/cr/trophies.png" alt="" className="trophyicon d-none d-sm-flex rtl-mr-2" />
 
                 <div className="media-body">
                   <h4 className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
@@ -258,33 +249,28 @@ class ClashRoyale extends React.Component {
           <Row className="cr-row">
             <Col className="cr-admission" span={12}>
               <Table
-                size="small"
-                columns={columns_a}
-                dataSource={dataSource}
-                pagination={{ pageSize: 50, hideOnSinglePage: true }}
-              />
+            size="small"
+            columns={columns_a}
+            dataSource={dataSource}
+            pagination={{ pageSize: 50, hideOnSinglePage: true }}
+          />
             </Col>
             <Col className="cr-info" span={12}>
               <Table
-                size="small"
-                columns={columns_b}
-                dataSource={dataSource}
-                pagination={{ pageSize: 50, hideOnSinglePage: true }}
-              />
+            size="small"
+            columns={columns_b}
+            dataSource={dataSource}
+            pagination={{ pageSize: 50, hideOnSinglePage: true }}
+          />
             </Col>
           </Row>
           <Row className="cr-members">
             <Col span={24}>
-              <Table
-                dataSource={memberDataSource}
-                columns={memberColumns}
-                pagination={{ pageSize: 50, hideOnSinglePage: true }}
-              />
+              <Table dataSource={memberDataSource} columns={memberColumns} pagination={{ pageSize: 50, hideOnSinglePage: true }} />
             </Col>
           </Row>
         </div>
-      </Layout>
-    );
+      </Layout>;
   }
 }
-export default ClashRoyale;
+export default Clash;
