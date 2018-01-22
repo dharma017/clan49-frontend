@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "prestart": "next build",
-    "start": "next start",
-    "heroku-postbuild": "next build"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "6.11.x"
   },
   "keywords": [],
   "author": "",
