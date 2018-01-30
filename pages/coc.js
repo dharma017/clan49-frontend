@@ -47,7 +47,7 @@ const Coc = props => (
           <table className="table table-inverse">
             <tbody>
               <tr>
-                <th colSpan={666} className="bg-dark text-muted">
+                <th className="bg-dark text-muted">
                   Clan Admission
                 </th>
               </tr>
@@ -84,7 +84,7 @@ const Coc = props => (
           <table className="table table-inverse">
             <tbody>
               <tr>
-                <th colSpan={666} className="bg-dark text-muted">
+                <th className="bg-dark text-muted">
                   Clan Info
                 </th>
               </tr>

@@ -37,9 +37,7 @@ const Header = () => (
           </Link>
         </Menu.Item>
       </SubMenu>
-      <Menu.Item key="app" disabled>
-        <Icon type="appstore" />Apps
-      </Menu.Item>
+      
     </Menu>
   </div>
 );

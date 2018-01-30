@@ -4,8 +4,8 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Table, Icon, Divider } from "antd";
 import { Row, Col } from "antd";
-import ChestCycle from "../components/ChestCycle.js";
-import PlayerStats from "../components/PlayerStats.js";
+import ChestCycle from "../components/cr/ChestCycle.js";
+import PlayerStats from "../components/cr/PlayerStats.js";
 
 class RoyalePlayer extends React.Component {
   static async getInitialProps(context) {
