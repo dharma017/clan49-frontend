@@ -83,7 +83,7 @@ class CrClanStats extends React.Component {
     ];
     
     return (
-      <div class="clanStats">
+      <div className="clanStats">
         <Row gutter={16}>
          <Col xs={24} sm={12} md={12}>
          <div style={RowStyle}>
