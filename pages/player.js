@@ -7,6 +7,7 @@ import { Row, Col } from "antd";
 import ChestCycle from "../components/cr/ChestCycle.js";
 import PlayerStats from "../components/cr/PlayerStats.js";
 import axios from "axios";
+import { ScaleLoader } from "react-spinners";
 
 class RoyalePlayer extends React.Component {
   constructor(props) {
@@ -40,7 +41,12 @@ class RoyalePlayer extends React.Component {
     const { data, loading } = this.state;
     
     if (this.state.loading) {
-      return <div>Loading...</div>;
+      return <Layout>
+          {/* <div>Loading...</div> */}
+          <div>
+            <ScaleLoader color={"#123abc"} loading={this.state.loading} />
+          </div>
+        </Layout>;
     } else {
       console.log(data.clan)
       return <Layout>
