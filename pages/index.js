@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../components/MyLayout.js";
 import axios from "axios";
-import Loader from "react-loader";
 import Home from "../components/cr/Home.js";
 
 class ClashRoyale extends React.Component {

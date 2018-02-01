@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Header from './Header'
+import { loadProgressBar } from "axios-progress-bar";
 
 const layoutStyle = {
   // margin: 20,
@@ -18,7 +19,6 @@ const Layout = props => (
         href="https://unpkg.com/antd@3/dist/antd.min.css"
       />
     </Head>
-
     <style jsx global>{`
       body {
         // background-color: red;
@@ -81,10 +81,10 @@ const Layout = props => (
         color: #dc3545 !important;
       }
       .text-muted {
-          color: #7a858c !important;
-      } 
+        color: #7a858c !important;
+      }
       .text-reverse {
-          text-align: right;
+        text-align: right;
       }
       .text-success {
         color: #28a745 !important;
@@ -100,18 +100,32 @@ const Layout = props => (
         width: 50px;
         height: 50 px;
       }
-      .clan-members{
-        margin-top : 20px;
+      .clan-members {
+        margin-top: 20px;
       }
-      table tr, table th {
+      table tr,
+      table th {
         text-align: center !important;
+      }
+
+      // loader starts
+      #nprogress .bar {
+        background: red !important;
+      }
+
+      #nprogress .peg {
+        box-shadow: 0 0 10px red, 0 0 5px red !important;
+      }
+
+      #nprogress .spinner-icon {
+        border-top-color: red !important;
+        border-left-color: red !important;
       }
     `}</style>
 
+    {loadProgressBar()}
     <Header />
-
     {props.children}
-
     <div className="footer">
       <footer>Made with passion and ♥ by drt from --49 Clan.</footer>
     </div>
