@@ -3,7 +3,6 @@ import { Card } from "antd";
 import { Row, Col } from "antd";
 import Link from "next/link";
 import { Table, Icon, Divider } from "antd";
-import Loader from "react-loader";
 import PlayerRank from "./PlayerRank.js";
 import CrClanStats from "./CrClanStats.js";
 

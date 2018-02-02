@@ -1,13 +1,11 @@
 import React from "react";
 import Layout from "../components/MyLayout.js";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
-import { Table, Icon, Divider } from "antd";
 import { Row, Col } from "antd";
+import axios from "axios";
 import ChestCycle from "../components/cr/ChestCycle.js";
 import PlayerStats from "../components/cr/PlayerStats.js";
-import axios from "axios";
-import { ScaleLoader } from "react-spinners";
+import MyLoader from "../components/MyLoader.js";
+
 
 class RoyalePlayer extends React.Component {
   constructor(props) {
@@ -42,9 +40,8 @@ class RoyalePlayer extends React.Component {
     
     if (this.state.loading) {
       return <Layout>
-          {/* <div>Loading...</div> */}
-          <div>
-            <ScaleLoader color={"#123abc"} loading={this.state.loading} />
+          <div class="loader">
+            <MyLoader loading={this.state.loading} />
           </div>
         </Layout>;
     } else {

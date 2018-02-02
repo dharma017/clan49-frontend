@@ -107,25 +107,10 @@ const Layout = props => (
       table th {
         text-align: center !important;
       }
-
-      // loader starts
-      #nprogress .bar {
-        background: red !important;
-      }
-
-      #nprogress .peg {
-        box-shadow: 0 0 10px red, 0 0 5px red !important;
-      }
-
-      #nprogress .spinner-icon {
-        border-top-color: red !important;
-        border-left-color: red !important;
-      }
     `}</style>
 
-    {loadProgressBar()}
     <Header />
-    {props.children}
+    <div className="main">{props.children}</div>
     <div className="footer">
       <footer>Made with passion and ♥ by drt from --49 Clan.</footer>
     </div>

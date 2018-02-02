@@ -2,7 +2,8 @@ import React from "react";
 import Layout from "../components/MyLayout.js";
 import axios from "axios";
 import Home from "../components/cr/Home.js";
-import { ScaleLoader } from "react-spinners";
+import MyLoader from "../components/MyLoader.js";
+
 
 class ClashRoyale extends React.Component {
   constructor() {
@@ -33,9 +34,8 @@ class ClashRoyale extends React.Component {
 
     if (this.state.loading) {
       return <Layout>
-          {/* <div>Loading...</div> */}
-          <div>
-            <ScaleLoader color={"#123abc"} loading={this.state.loading} />
+          <div class="loader">
+            <MyLoader loading={this.state.loading} />
           </div>
         </Layout>;
     } else {
