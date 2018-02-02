@@ -34,7 +34,7 @@ class ClashRoyale extends React.Component {
 
     if (this.state.loading) {
       return <Layout>
-          <div class="loader">
+          <div className="loader">
             <MyLoader loading={this.state.loading} />
           </div>
         </Layout>;
