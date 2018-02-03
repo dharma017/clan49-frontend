@@ -46,6 +46,7 @@ const Layout = props => (
       .footer {
         margin-top: 10px;
         font-size : 16px;
+        padding: 10px;
       }
       .main {
         padding: 10px;
