@@ -23,6 +23,18 @@ const Layout = props => (
       body {
         // background-color: red;
       }
+      .ant-menu li:nth-child(1):hover{
+            background-color: #488af4;
+          }
+      .ant-menu > li:nth-child(2):hover{
+            background-color: rgb(255, 190, 49);
+      }
+      .ant-menu > li:nth-child(3):hover{
+            background-color: #488af4;
+      }
+      .ant-menu li a:hover{
+            color: #fff !important;
+      }
       .cr-admission,
       .cr-info,
       .cr-members {
@@ -33,8 +45,9 @@ const Layout = props => (
       }
       .footer {
         margin-top: 10px;
+        font-size : 16px;
       }
-      .clan-container {
+      .main {
         padding: 10px;
       }
       .clanbadge {
@@ -106,7 +119,21 @@ const Layout = props => (
       table tr,
       table th {
         text-align: center !important;
+        
       }
+      .ant-table-thead th{
+        color: #ffffff;
+        background : #ffab18 !important;
+      }
+      .ant-table-title,.ant-card-head {
+        color: #ffffff;
+          background: #4549a8 !important;
+      }
+      .ant-card-head-title{
+        color: #ffffff !important;
+      }
+      tr:nth-child(odd)		{ background-color:#f8f6ff; }
+      tr:nth-child(even)		{ background-color:#fff; }
     `}</style>
 
     <Header />

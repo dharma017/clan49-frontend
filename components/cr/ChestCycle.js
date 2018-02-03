@@ -19,7 +19,7 @@ const ChestCycle = props => (
       <Row gutter={8}>
         {props.chestCycle.upcoming.map((chest, i) => (
           // <Card.Grid className="chest-container" key={i} style={gridStyle}>
-          <Col xs={{ span: 7, offset: 1 }} sm={{ span: 2, offset: 1 }} key={i}>
+          <Col xs={{ span: 7, offset: 1 }} sm={{ span: 1, offset: 1 }} key={i}>
             <div style={chestDivStyle} key={i}>
               <img
                 src={"https://spy.deckshop.pro/img/chests/" + chest + ".png"}

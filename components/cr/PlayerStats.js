@@ -87,7 +87,7 @@ class PlayerStats extends React.Component {
       {
         key: "6",
         title: "Win Rate",
-        value: this.props.player.games.winPercent * 100 + '%'
+        value: (this.props.player.games.winsPercent) ? (this.props.player.games.winsPercent * 100) + '%': 'N/A' 
       }
     ];
     

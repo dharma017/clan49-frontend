@@ -32,12 +32,12 @@ class CrClanStats extends React.Component {
       {
         key: "4",
         title: "Clan Leader",
-        value: "N/A"
+        value: this.props.extras.leaderName
       },
       {
         key: "5",
         title: "Clan Chest",
-        value: "Minimum 32 crowns"
+        value: (1600 / this.props.clan.memberCount) + " crowns"
       }
     ];
 
@@ -45,7 +45,7 @@ class CrClanStats extends React.Component {
       {
         key: "1",
         title: "Location",
-        value: this.props.clan.location.name + " / 50"
+        value: this.props.clan.location.name
       },
       {
         key: "2",
@@ -60,12 +60,12 @@ class CrClanStats extends React.Component {
       {
         key: "4",
         title: "Elders",
-        value: "N/A"
+        value: this.props.extras.elderCount
       },
       {
         key: "5",
         title: "Co-leaders",
-        value: "N/A"
+        value: this.props.extras.coLeaderCount
       }
     ];
     

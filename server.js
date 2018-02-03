@@ -23,10 +23,10 @@ app.prepare()
            return app.render(req, res, actualPage, queryParams);
         }); 
 
-        server.get("/coc", (req, res) => {
-          const actualPage = "/coc";
-          return app.render(req, res, actualPage);
-        }); 
+        // server.get("/coc", (req, res) => {
+        //   const actualPage = "/coc";
+        //   return app.render(req, res, actualPage);
+        // }); 
 
         server.get('*', (req, res) => {
             return handle(req, res)

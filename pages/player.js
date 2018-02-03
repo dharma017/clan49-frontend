@@ -49,6 +49,7 @@ class RoyalePlayer extends React.Component {
       return <Layout>
         <Row>
           <Col span={8}>
+            <div>
             <img
               src={data.clan.badge.image}
               alt=""
@@ -59,6 +60,7 @@ class RoyalePlayer extends React.Component {
               <p className="small text-reverse text-muted">
                 #{data.tag}
               </p>
+            </div>
             </div>
           </Col>
           <Col span={8} offset={8}>

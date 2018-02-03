@@ -36,6 +36,29 @@ class Home extends React.Component {
       clanChestCrowns: member.clanChestCrowns
     }));
 
+    
+    let clanStat = {
+      'coLeaderCount' : 0,
+      'elderCount' : 0,
+      'leaderName' : '',
+    };
+
+    memberDataSource.forEach((member, index) => {
+      if (member.role === "coLeader") {
+        clanStat.coLeaderCount++;
+      }
+
+      if (member.role === "elder") {
+        clanStat.elderCount++;
+      }
+
+      if (member.role === "leader") {
+        clanStat.leaderName = member.name;
+      }
+    });
+
+    console.log(clanStat);
+
     const memberColumns = [
       {
         title: "Rank",
@@ -120,44 +143,6 @@ class Home extends React.Component {
       }
     ];
 
-    const dataSource = [
-      {
-        key: "1",
-        caKey: "Members",
-        caValue: clan.memberCount + " / 50",
-        ciKey: "Location",
-        ciValue: clan.location.name
-      },
-      {
-        key: "2",
-        caKey: "Type",
-        caValue: clan.type,
-        ciKey: "Donations Per Week",
-        ciValue: clan.donations
-      },
-      {
-        key: "3",
-        caKey: "Required Trophies",
-        caValue: clan.requiredScore,
-        ciKey: "Clan Chest Status",
-        ciValue: clan.clanChest.status
-      },
-      {
-        key: "4",
-        caKey: "Clan Leader",
-        caValue: "Sujen",
-        ciKey: "Elders",
-        ciValue: 25
-      },
-      {
-        key: "5",
-        caKey: "Trophy Range",
-        caValue: "688 – 4 082",
-        ciKey: "Co-leaders",
-        ciValue: 18
-      }
-    ];
-
     return (
     <div>
       <div className="clan-container">
@@ -195,20 +180,23 @@ class Home extends React.Component {
           <Row>
             <Col span={24}>
               <div className="pb-2">
-                <p className="text-white border p-3 py-2 border-dark mb-0">
-                  {clan.description}
-                </p>
+                <p className="text-white border p-3 py-2 border-dark mb-0"> {clan.description}
+                 </p>
+                <emp>
+                  Collect <em style={{ "color": 'red', 'font-size': '12px' }}>{(1600 / clan.memberCount) + " crowns"}</em> for the Clan Chest event.
+                    </emp>
               </div>
             </Col>
           </Row>
         </div>
         <div className="cr-clan">
           <div className="clan-stats">
-            <CrClanStats clan={clan} />
+            <CrClanStats clan={clan} extras={clanStat}/>
           </div>
           <div className="clan-members">
             <Table
               bordered
+              title={() => "Clan Members"}
               size="small"
               dataSource={memberDataSource}
               columns={memberColumns}
