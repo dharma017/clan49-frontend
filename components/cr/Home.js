@@ -2,9 +2,11 @@ import React from "react";
 import { Card } from "antd";
 import { Row, Col } from "antd";
 import Link from "next/link";
+import { Tag } from 'antd';
 import { Table, Icon, Divider } from "antd";
 import PlayerRank from "./PlayerRank.js";
 import CrClanStats from "./CrClanStats.js";
+
 
 const RowStyle = {
   paddingTop: "10px"
@@ -78,7 +80,11 @@ class Home extends React.Component {
         width: 5,
         render: (text, record) => (
           <span>
-            {record.role}
+            {/* {record.role} */}
+            {(record.role === 'coLeader') && <Tag color="#2db7f5">{record.role} </Tag>}
+            {(record.role === 'elder') && <Tag color="#87d068">{record.role}</Tag>}
+            {(record.role === 'leader') && <Tag color="#108ee9">{record.role}</Tag>}
+            {(record.role === 'member') && <Tag color="#f50">{record.role}</Tag>}
             <Divider type="horizontal" />
             <Link as={`/p/${record.tag}`} href={`/player?id=${record.tag}`}>
               <a>{record.name}</a>
