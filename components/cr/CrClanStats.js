@@ -12,7 +12,7 @@ class CrClanStats extends React.Component {
   }
 
   render() {
-
+    
       const dataSourceA = [
       {
         key: "1",

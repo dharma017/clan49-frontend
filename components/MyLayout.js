@@ -124,7 +124,7 @@ const Layout = props => (
       }
       .ant-table-thead th{
         color: #ffffff;
-        background : #ffab18 !important;
+        background : #e7f0f7 !important;
       }
       .ant-table-title,.ant-card-head {
         color: #ffffff;

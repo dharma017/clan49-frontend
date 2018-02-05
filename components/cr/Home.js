@@ -145,7 +145,7 @@ class Home extends React.Component {
 
     return (
     <div>
-      <div className="clan-container">
+        <div className="clan-container">
           <Row>
             <Col xs={{ span: 12 }} sm={{ span: 8 }}>
               <img
@@ -181,13 +181,14 @@ class Home extends React.Component {
             <Col span={24}>
               <div className="pb-2">
                 <p className="text-white border p-3 py-2 border-dark mb-0"> {clan.description}
-                 </p>
-                <emp>
-                  Collect <em style={{ "color": 'red', 'font-size': '12px' }}>{(1600 / clan.memberCount) + " crowns"}</em> for the Clan Chest event.
-                    </emp>
+                </p>
+                {clan.clanChest.status === 'active' && <span>
+                  Collect <em style={{ "color": 'red', 'font-size': '12px' }}>{(parseInt(1600 / clan.memberCount)) + " crowns"}</em> for the Clan Chest event.
+                    </span>}
+                
               </div>
             </Col>
-          </Row>
+          </Row> 
         </div>
         <div className="cr-clan">
           <div className="clan-stats">

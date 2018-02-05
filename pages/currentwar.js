@@ -2,7 +2,7 @@ import Layout from "../components/MyLayout.js";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 
-const Chief = props => (
+const CurrentWar = props => (
   <Layout>
     <div className="jumbotron jumbotron-fluid bg-dark py-0 mb-0">
       <div className="container clearfix">
@@ -189,13 +189,11 @@ const Chief = props => (
   </Layout>
 );
 
-Chief.getInitialProps = async function(context) {
+CurrentWar.getInitialProps = async function(context) {
 
-  const res = await fetch("https://api.clashofclans.com/v1/clans/"+encodeURIComponent('#YPL9RJ2R')+"/currentwar", {
+  const res = await fetch("http://localhost:5000/clans/YPL9RJ2R/currentwar", {
  
     headers: {
-      Authorization:
-        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6Ijg5MTQxODAxLTA0YjUtNDMzZi1iMDY5LTNmNDMwYTk4ZWNkNiIsImlhdCI6MTUxNjUyMDIzMywic3ViIjoiZGV2ZWxvcGVyLzRjODY5NGE4LTlmODctMzAzMy03YTUzLWMwODZjYTY4MGFlMSIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjM2LjI1Mi4xNjQuMjQ3Il0sInR5cGUiOiJjbGllbnQifV19.GHWqw0feyfKNJfrLszx9Ora_pbqwcC0vaGiW6z_GCxrRpb8neGW6YCgGoF0AGPxdG9DVSpZ4-qeDduv8xXwYhw",
       "Content-Type": "application/json"
     }
   });
@@ -209,4 +207,4 @@ Chief.getInitialProps = async function(context) {
   };
 };
 
-export default Chief;
+export default CurrentWar;

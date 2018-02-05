@@ -20,7 +20,7 @@ const Header = () => (
           <a style={linkStyle}>Clash Royale</a>
         </Link>
       </Menu.Item>
-      <SubMenu title={<span>Clash of Clans</span>} disabled>
+      <SubMenu title={<span>Clash of Clans</span>}>
         <Menu.Item key="coc">
           <Link href="/coc">
             <a style={linkStyle}>Clan</a>
