@@ -1,125 +1,95 @@
+import React from "react";
 import Layout from "../components/MyLayout.js";
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
+import { Row, Col } from "antd";
+import axios from "axios";
+import MyLoader from "../components/MyLoader.js";
+import { Timeline, Avatar } from 'antd';
+import { Popover, Button ,Icon} from 'antd';
+import Moment from 'react-moment';
 
-const WarLog = props => (
-  <Layout>
-    <div className="jumbotron jumbotron-fluid bg-dark py-0 mb-0">
-      <div className="container clearfix">
-        <div className="float-left">
-          <h1 className="text-white display-4 mb-0 pt-3">War Log</h1>
+// const vsStyle = {
+//   paddingTop: '10px'
+// };
+
+class WarLog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: "", loading: true };
+  }
+
+  componentDidMount() {
+    // console.log(this.props.url.query);
+    const { id } = this.props.url.query;
+    // console.log({id});
+    const url = `http://localhost:5000/clans/YPL9RJ2R/warlog`;
+
+    axios({
+      method: "get",
+      url: url,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        this.setState({ data: response.data, loading: false });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  render() {
+    const { data, loading } = this.state;
+
+    if (this.state.loading) {
+      return <Layout>
+        <div className="loader">
+          <MyLoader loading={this.state.loading} />
         </div>
-      </div>
-    </div>
-    <div className="container">
-      <table className="table table-inverse table-complex">
-        <thead>
-          <tr className="font-weight-normal text-muted">
-            <th className="font-weight-normal">
-              <span className="d-sm-none">Result</span>
-            </th>
-            <th className="font-weight-normal d-none d-xs-table-cell">
-              End Time
-            </th>
-            <th className="font-weight-normal">
-              Team <br /> <small>size</small>
-            </th>
-            <th className="font-weight-normal d-none d-md-table-cell">Clan</th>
-            <th className="font-weight-normal">Opponent</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.warlog.items.map((item, i) => (
-            <tr key={i} className="tr-hilite">
-              
-              <td className="text-muted">
-                <span className="h4" dir="ltr">
-                  {item.result}
-                </span>
-              </td>
-              <td className="d-none d-xs-table-cell">{item.endTime}</td>
-              <td>
-                <span className="badge badge-info text-dark">
-                  {item.teamSize}
-                </span>
-              </td>
-              <td className="text-info d-none d-md-table-cell">
-                {item.clan.name}
-                <br />
-                <span className="text-success" dir="ltr">
-                  Clan Tag : {item.clan.tag}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Clan Level : {item.clan.clanLevel}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Attacks : {item.clan.attacks}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Attacks : {item.clan.stars}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Destruction Percentage : {item.clan.destructionPercentage}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Experience Earned : {item.clan.expEarned}
-                </span>
-              </td>
-              
-              <td className="text-info d-none d-md-table-cell">
-                {item.opponent.name}
-                <br />
-                <span className="text-success" dir="ltr">
-                  Clan Tag : {item.opponent.tag}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Clan Level : {item.opponent.clanLevel}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Stars : {item.opponent.stars}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Destruction Percentage : {item.opponent.destructionPercentage}
-                </span>
-                <br />
-                <span className="text-success" dir="ltr">
-                  Experience Earned : {item.opponent.expEarned}
-                </span>
-              </td>
-            </tr>
-            
-            
+      </Layout>;
+    } else {
+      
+      return <Layout>
+        <Timeline>
+          {data.items.map((item, i) => (
+            <div key={i}>
+              <Timeline.Item color={ (item.result == 'win') ? 'green' : 'red' }>
+                <p>
+                <Moment format="llll">
+                  {item.endTime}
+                  </Moment>&nbsp;(<Moment fromNow ago>{item.endTime}</Moment> ago)</p>
+                <p><Popover content={<div>
+                  <p>Clan Tag {item.clan.tag}</p>
+                  <p>Clan Level {item.clan.clanLevel}</p>
+                  <p>Attacks {item.clan.attacks}</p>
+                  <p>Stars {item.clan.stars}</p>
+                  <p>Destruction Percentage {item.clan.destructionPercentage}</p>
+                  <p>Experience Earned {item.clan.expEarned}</p>
+
+                </div>} title={item.clan.name} trigger="hover">
+                <Avatar src={item.clan.badgeUrls.small} />
+                <Button ghost={false} type="primary">{item.clan.name} <Icon spin={true} type="star" style={{ fontSize: 16, color: '#FFD700' }} />{item.clan.stars} <Icon type="info-circle-o" /></Button>
+                </Popover>
+                
+                <span style={{ 'marginLeft': '20px', 'marginRight': '20px' }}> {item.teamSize} vs {item.teamSize} </span>
+                  <Avatar src={item.opponent.badgeUrls.small} />
+
+                <Popover content={<div>
+                  <p>Clan Tag {item.opponent.tag}</p>
+                  <p>Clan Level {item.opponent.clanLevel}</p>
+                  <p>Stars {item.opponent.stars}</p>
+                  <p>Destruction Percentage {item.opponent.destructionPercentage}</p>
+                  <p>Experience Earned {item.opponent.expEarned}</p>
+                </div>} title={item.opponent.name} trigger="hover">
+                  <Button ghost={true} type="primary">{item.opponent.name} <Icon spin={true} type="star" style={{ fontSize: 16, color: '#08c' }} />{item.opponent.stars} <Icon type="info-circle-o" /></Button>
+                </Popover>
+                </p>
+              </Timeline.Item>
+            </div>
           ))}
-        </tbody>
-      </table>
-    </div>
-  </Layout>
-);
-
-WarLog.getInitialProps = async function(context) {
-
-  const res = await fetch("http://localhost:5000/clans/YPL9RJ2R/warlog", {
- 
-    headers: {
-      "Content-Type": "application/json"
+        </Timeline>
+      </Layout>;
     }
-  });
-  const data = await res.json();
-  console.log(data);
-
-  console.log(`Show data fetched. Count: ${data.items.length}`)
-
-  return {
-    warlog: data
-  };
-};
-
+  }
+}
 export default WarLog;
