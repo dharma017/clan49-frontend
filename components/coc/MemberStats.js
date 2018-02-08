@@ -133,7 +133,7 @@ class MemberStats extends React.Component {
         ];
 
         return (
-            <div className="memberStats" style={{"margin-top":'20px'}}>
+            <div className="memberStats" style={{"marginTop":'20px'}}>
                 <Table
                     bordered
                     title={() => "Clan Members"}

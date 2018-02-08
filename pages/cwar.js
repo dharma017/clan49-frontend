@@ -2,7 +2,7 @@ import Layout from "../components/MyLayout.js";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 
-const CurrentWar = props => (
+const Cwar = props => (
   <Layout>
     <div className="jumbotron jumbotron-fluid bg-dark py-0 mb-0">
       <div className="container clearfix">
@@ -189,7 +189,7 @@ const CurrentWar = props => (
   </Layout>
 );
 
-CurrentWar.getInitialProps = async function(context) {
+Cwar.getInitialProps = async function(context) {
 
   const res = await fetch("http://localhost:5000/clans/YPL9RJ2R/currentwar", {
  
@@ -207,4 +207,4 @@ CurrentWar.getInitialProps = async function(context) {
   };
 };
 
-export default CurrentWar;
+export default Cwar;

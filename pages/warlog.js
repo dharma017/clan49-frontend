@@ -68,7 +68,7 @@ class WarLog extends React.Component {
 
                 </div>} title={item.clan.name} trigger="hover">
                 <Avatar src={item.clan.badgeUrls.small} />
-                <Button ghost={false} type="primary">{item.clan.name} <Icon spin={true} type="star" style={{ fontSize: 16, color: '#FFD700' }} />{item.clan.stars} <Icon type="info-circle-o" /></Button>
+                <Button ghost={false} type="primary">{item.clan.name} <Icon spin={false} type="star" style={{ fontSize: 16, color: '#FFD700' }} />{item.clan.stars} <Icon type="info-circle-o" /></Button>
                 </Popover>
                 
                 <span style={{ 'marginLeft': '20px', 'marginRight': '20px' }}> {item.teamSize} vs {item.teamSize} </span>
@@ -81,7 +81,7 @@ class WarLog extends React.Component {
                   <p>Destruction Percentage {item.opponent.destructionPercentage}</p>
                   <p>Experience Earned {item.opponent.expEarned}</p>
                 </div>} title={item.opponent.name} trigger="hover">
-                  <Button ghost={true} type="primary">{item.opponent.name} <Icon spin={true} type="star" style={{ fontSize: 16, color: '#08c' }} />{item.opponent.stars} <Icon type="info-circle-o" /></Button>
+                  <Button ghost={true} type="primary">{item.opponent.name} <Icon spin={false} type="star" style={{ fontSize: 16, color: '#08c' }} />{item.opponent.stars} <Icon type="info-circle-o" /></Button>
                 </Popover>
                 </p>
               </Timeline.Item>
