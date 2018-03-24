@@ -31,7 +31,7 @@ const WarLog = props => (
         <tbody>
           {props.warlog.items.map((item, i) => (
             <tr key={i} className="tr-hilite">
-              
+
               <td className="text-muted">
                 <span className="h4" dir="ltr">
                   {item.result}
@@ -70,7 +70,7 @@ const WarLog = props => (
                   Experience Earned : {item.clan.expEarned}
                 </span>
               </td>
-              
+
               <td className="text-info d-none d-md-table-cell">
                 {item.opponent.name}
                 <br />
@@ -95,8 +95,8 @@ const WarLog = props => (
                 </span>
               </td>
             </tr>
-            
-            
+
+
           ))}
         </tbody>
       </table>
@@ -106,8 +106,8 @@ const WarLog = props => (
 
 WarLog.getInitialProps = async function(context) {
 
-  const res = await fetch("http://localhost:5000/clans/YPL9RJ2R/warlog", {
- 
+  const res = await fetch("http://139.59.92.130:5000/clans/YPL9RJ2R/warlog", {
+
     headers: {
       "Content-Type": "application/json"
     }

@@ -221,7 +221,7 @@ const Chief = props => (
 Chief.getInitialProps = async function(context) {
   const { id } = context.query;
 
-  const res = await fetch(`http://localhost:5000/players/${id}`, {
+  const res = await fetch(`http://139.59.92.130:5000/players/${id}`, {
     headers: {
       "Content-Type": "application/json"
     }

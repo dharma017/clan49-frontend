@@ -14,9 +14,9 @@ class Chief extends React.Component {
   componentDidMount() {
     // console.log(this.props.url.query);
     const { id } = this.props.url.query;
-     
+
     console.log({id});
-    const url = `http://localhost:5000/players/${id}`;
+    const url = `http://139.59.92.130:5000/players/${id}`;
 
     axios({
       method: "get",
@@ -44,7 +44,7 @@ class Chief extends React.Component {
         </div>
       </Layout>;
     } else {
-      
+
       return <Layout>
         <div className = "player-stats">
           <PlayerStats info={this.state.data} />

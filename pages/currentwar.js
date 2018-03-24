@@ -15,7 +15,7 @@ class WarLog extends React.Component {
     // console.log(this.props.url.query);
     const { id } = this.props.url.query;
     // console.log({id});
-    const url = `http://localhost:5000/clans/YPL9RJ2R/currentwar`;
+    const url = `http://139.59.92.130:5000/clans/YPL9RJ2R/currentwar`;
 
     axios({
       method: "get",
@@ -47,7 +47,7 @@ class WarLog extends React.Component {
         <div>
           <CurrentWarHeader currentwar={data} />
           <CurrentWarStats members={data.clan.members} />
-        </div>  
+        </div>
       </Layout>
     }
   }

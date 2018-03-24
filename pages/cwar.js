@@ -191,8 +191,8 @@ const Cwar = props => (
 
 Cwar.getInitialProps = async function(context) {
 
-  const res = await fetch("http://localhost:5000/clans/YPL9RJ2R/currentwar", {
- 
+  const res = await fetch("http://139.59.92.130:5000/clans/YPL9RJ2R/currentwar", {
+
     headers: {
       "Content-Type": "application/json"
     }

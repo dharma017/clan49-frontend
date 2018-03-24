@@ -21,7 +21,7 @@ class WarLog extends React.Component {
     // console.log(this.props.url.query);
     const { id } = this.props.url.query;
     // console.log({id});
-    const url = `http://localhost:5000/clans/YPL9RJ2R/warlog`;
+    const url = `http://139.59.92.130:5000/clans/YPL9RJ2R/warlog`;
 
     axios({
       method: "get",
@@ -48,7 +48,7 @@ class WarLog extends React.Component {
         </div>
       </Layout>;
     } else {
-      
+
       return <Layout>
         <Timeline>
           {data.items.map((item, i) => (
@@ -70,7 +70,7 @@ class WarLog extends React.Component {
                 <Avatar src={item.clan.badgeUrls.small} />
                 <Button ghost={false} type="primary">{item.clan.name} <Icon spin={false} type="star" style={{ fontSize: 16, color: '#FFD700' }} />{item.clan.stars} <Icon type="info-circle-o" /></Button>
                 </Popover>
-                
+
                 <span style={{ 'marginLeft': '20px', 'marginRight': '20px' }}> {item.teamSize} vs {item.teamSize} </span>
                   <Avatar src={item.opponent.badgeUrls.small} />
 
