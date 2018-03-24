@@ -21,7 +21,7 @@ class CurrentWarStats extends React.Component {
         const members = this.props.members;
         const listItems = members.map((member,i) =>
 
-            <Row key={i.toString()} style={RowStyle}>
+        <Row key={i.toString()} style={RowStyle}>
             <Col xs={24} sm={24} md={24}>
             <Steps current={member.attacks && member.attacks.length > 0 ? member.attacks.length :0 } >
                 <Step 
@@ -42,8 +42,9 @@ class CurrentWarStats extends React.Component {
                                 status={members[i].attacks[0].stars === 3 ? 'finish' : 'error'}
                                 description={(
                                     <div>
-                                        <p>Stars {members[i].attacks[0].stars}</p>
+                                        <p>{members[i].attacks[0].stars} <Icon type="star" /></p>
                                         <p>destructionPercentage {members[i].attacks[0].destructionPercentage}</p>
+                                        <p>defenderTag {members[i].attacks[0].defenderTag}</p>
                                     </div>
                                 )
                                 } />
@@ -57,17 +58,15 @@ class CurrentWarStats extends React.Component {
                                 status={members[i].attacks[1].stars === 3 ? 'finish' : 'error'}
                                 description={(
                                     <div>
-                                        <p>Stars {members[i].attacks[1].stars}</p>
-                                        <p>destructionPercentage {members[i].attacks[1].destructionPercentage}</p>
+                                        <p>{members[i].attacks[1].stars} <Icon type="star" /></p>
+                                        <p>destructionPercentage {members[i].attacks[1].destructionPercentage}%</p>
+                                        <p>defenderTag {members[i].attacks[1].defenderTag}</p>
                                     </div>
                                 )
                                 } />
                             : <Step status="process" title="Second Attack" icon={<Icon type="loading" />} />
                         }
-
-                
-                    
-            </Steps>
+                    </Steps>
                 </Col>
             </Row>
         );

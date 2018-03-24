@@ -17,84 +17,56 @@ class CurrentWarHeader extends React.Component {
         return (
             <div>
                 <Row>
-                    <Col xs={{ span: 24 }} sm={{ span: 24 }}>
-                        <div className="row title">
-                            <div className="col s12">
-                                <div className="end-time">
-                                    <i className="material-icons">End time</i>
-                                    <span><Moment format="llll">{war.endTime}</Moment></span>
-                                </div>
-                                <div className="left-info">
-                                    <div className="war-size">
-                                        <span className="team-size">{war.teamSize}</span>
-                                        <span className="vs">&nbsp;VS&nbsp;</span>
-                                        <span className="team-size">{war.teamSize}</span>
-                                    </div>
-                                </div>
-                                <div className="clan-tag">{war.clan.tag}</div>
-                                <div className="result" data-war-result="win"></div>
-                            </div>
+                    <Col span={24}>
+                        <div className="pb-2">
+                            <p className="text-white border p-3 py-2 border-dark mb-0"> {war.teamSize}&nbsp;vs {war.teamSize}
+                            </p>
+                            <p className="text-white border p-3 py-2 border-dark mb-0">
+                            <i className="material-icons">End time</i>
+                                <span><Moment format="llll">{war.endTime}</Moment></span>
+                            </p>
                         </div>
                     </Col>
-                    <Col xs={{ span: 12 }} sm={{ span: 12 }}>
-                        <div className="col s6">
-                            <div className="row main-clan">
-                                <div className="col s12 m4 l5 badge-container">
-                                    <img className="badge" src={war.clan.badgeUrls.small} />
-                                    </div>
-                                    <div className="col s12 m8 l7">
-                                        <div className="row stars right-on-medium-and-up">
-                                            <div className="col s12 reverse-on-small-only">
-                                                <span className="block-on-small-only">
-                                                    <span className="sprites-war-stars sprites"></span>
-                                                </span>
-                                                <span className="block-on-small-only stars-count">{war.clan.stars}</span>
-                                            </div>
-                                        </div>
-                                        <h5 className="right-on-medium-and-up">{war.clan.name}</h5>
-                                        <div className="row values">
-                                            <div className="col s6 attacks">
-                                                <div className="value">
-                                                    <span className="attacks-done">{war.clan.attacks}</span>
-                                                    <span className="attacks-possible">&nbsp;/&nbsp;{war.clan.stars * 3}</span>
-                                                </div>
-                                                <div className="text">Attacks</div>
-                                            </div>
-                                            <div className="col s6 destruction">
-                                            <div className="value destruction-percentage">{war.clan.destructionPercentage}</div>
-                                                <div className="text">Destroyed</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                </Row>
+                <Row>
+                    <Col xs={{ span: 12 }} sm={{ span: 8 }}>
+                    <div className="float-left">
+                        <img
+                            src={war.clan.badgeUrls.small}
+                            alt=""
+                            style={{ "width": "70px", "height": "70px" }}
+                            className="clanbadge rtl-mr-3 mt-3"
+                        />
+                            <h1 className="display-4 mb-0 pt-3">{war.clan.name}</h1>
+                            <p className="small text-reverse text-muted">{war.clan.tag}</p>
+                            <p className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
+                                {war.clan.stars}
+                            </p>
+                            <p className="small text-muted text-reverse mb-0 text-danger">
+                                <span dir="ltr">{war.clan.attacks} / {war.clan.stars * 3}</span>
+                            </p>
+                            <p className="small text-muted text-reverse mb-0 text-danger">
+                                <span dir="ltr">{war.clan.destructionPercentage} Destroyed</span>
+                            </p>
+                        </div>
                     </Col>
-                    <Col xs={{ span: 12 }} sm={{ span: 12 }}>
-                        <div className="col s6">
-                            <a className="row opponent-clan hoverable reverse-on-small-only" href="/clans/battle-manipur-89CP808C/war-log#tabs" data-tooltip="View this Clan"
-                                data-tooltip-id="97feff15-f79a-4bd3-f45c-02458a393d8e">
-                                <div className="col s12 m8 l7">
-                                    <div className="row stars left-on-medium-and-up">
-                                        <div className="col s12">
-                                            <span className="block-on-small-only stars-count">{war.opponent.stars}</span>
-                                            <span className="block-on-small-only">
-                                                <span className="sprites-war-stars sprites"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <h5 className="left-on-medium-and-up">{war.opponent.name}</h5>
-                                    <div className="row values">
-                                        <div className="col s12 m6 destruction">
-                                            <div className="value destruction-percentage">{war.opponent.destructionPercentage}</div>
-                                            <div className="text">Destroyed</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col s12 m4 l5 badge-container">
-                                    <img className="badge" src={war.opponent.badgeUrls.small} />
-                                    </div>
-                                </a>
-                            </div>
+                    <Col xs={{ span: 12 }} sm={{ span: 8, offset: 8 }}>
+                    <div className="float-right py-3 media ml-md-4">
+                        <img
+                            src={war.opponent.badgeUrls.small}
+                            alt=""
+                            style={{ "width": "70px", "height": "70px" }}
+                            className="clanbadge rtl-mr-3 mt-3"
+                        />
+                            <h1 className="display-4 mb-0 pt-3">{war.opponent.name}</h1>
+                            <p className="small text-reverse text-muted">{war.opponent.tag}</p>
+                            <p className="text-warning pt-2 pt-sm-3 mb-0" dir="ltr">
+                                {war.opponent.stars}
+                            </p>
+                            <p className="small text-muted text-reverse mb-0 text-danger">
+                                <span dir="ltr">{war.opponent.destructionPercentage} Destroyed</span>
+                            </p>
+                        </div>
                     </Col>
                 </Row>
             </div>

@@ -11,7 +11,7 @@ class Coc extends React.Component {
   }
 
   componentDidMount() {
-    const url = "http://localhost:5000/clans/YPL9RJ2R";
+    const url = "http://139.59.92.130:5000/clans/YPL9RJ2R";
 
     // in axios access data with .data
     axios({
