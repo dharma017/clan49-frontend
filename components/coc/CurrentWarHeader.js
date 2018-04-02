@@ -23,7 +23,7 @@ class CurrentWarHeader extends React.Component {
                 <Row type="flex" justify="center">
                     <Col xs={24} sm={24} md={24}>
                         <h1>Clan War</h1>
-                        <p><strong>War State</strong> {war.state}</p>
+                        <p><strong>War State</strong> <font size={15}>{war.state}</font></p>
                         <p><strong>Start time</strong> <span><Moment format="llll">{war.startTime}</Moment></span></p>
                         <p><strong>Preparation Start time</strong> <span><Moment format="llll">{war.preparationStartTime}</Moment></span></p>
                         <p><strong>End time</strong> <span><Moment format="llll">{war.endTime}</Moment></span></p>

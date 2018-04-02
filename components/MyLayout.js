@@ -135,6 +135,9 @@ const Layout = props => (
       }
       tr:nth-child(odd)		{ background-color:#f8f6ff; }
       tr:nth-child(even)		{ background-color:#fff; }
+      .cw-steps .ant-steps-item-description {
+          max-width: 200px !important;
+      }
     `}</style>
 
     <Header />

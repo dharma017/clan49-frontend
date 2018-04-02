@@ -9,7 +9,7 @@ import { Rate } from 'antd';
 const Step = Steps.Step;
 
 const RowStyle = {
-    paddingTop: '20px',
+    padding: '20px',
     // marginTop: '20px'
 };
 
@@ -22,10 +22,9 @@ class CurrentWarStats extends React.Component {
 
         const members = this.props.members;
         const listItems = members.map((member,i) =>
-
-        <Row key={i.toString()} style={RowStyle}>
-            <Col xs={24} sm={24} md={24}>
-            <Steps current={member.attacks && member.attacks.length > 0 ? member.attacks.length :0 } >
+            <Row type="flex" justify="space-around" key={i.toString()} style={RowStyle}>
+            <Col xs={24} sm={24} md={20}>
+            <Steps className="cw-steps" size="small" current={member.attacks && member.attacks.length > 0 ? member.attacks.length :0 } >
                 <Step 
                 title={member.name} 
                 status="finish"
@@ -74,7 +73,7 @@ class CurrentWarStats extends React.Component {
             </Row>
         );
         return (
-            <ul>{listItems}</ul>
+            <div>{listItems}</div>
         );
     }
 }
