@@ -7,9 +7,9 @@ import { Timeline, Avatar } from 'antd';
 import { Popover, Button ,Icon} from 'antd';
 import Moment from 'react-moment';
 
-// const vsStyle = {
-//   paddingTop: '10px'
-// };
+const RowStyle = {
+  paddingTop: '10px'
+};
 
 class WarLog extends React.Component {
   constructor(props) {
@@ -50,6 +50,7 @@ class WarLog extends React.Component {
     } else {
 
       return <Layout>
+        <div style={RowStyle}>
         <Timeline>
           {data.items.map((item, i) => (
             <div key={i}>
@@ -88,6 +89,7 @@ class WarLog extends React.Component {
             </div>
           ))}
         </Timeline>
+        </div>
       </Layout>;
     }
   }

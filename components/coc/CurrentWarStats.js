@@ -4,6 +4,8 @@ import { Popover, Icon } from 'antd';
 import Moment from 'react-moment';
 import Link from "next/link";
 import { Steps } from 'antd';
+import { Rate } from 'antd';
+
 const Step = Steps.Step;
 
 const RowStyle = {
@@ -42,8 +44,9 @@ class CurrentWarStats extends React.Component {
                                 status={members[i].attacks[0].stars === 3 ? 'finish' : 'error'}
                                 description={(
                                     <div>
-                                        <p>{members[i].attacks[0].stars} <Icon type="star" /></p>
-                                        <p>destructionPercentage {members[i].attacks[0].destructionPercentage}</p>
+
+                                        <div><Rate disabled count={3} defaultValue={members[i].attacks[0].stars} /></div>
+                                        <p>destructionPercentage {members[i].attacks[0].destructionPercentage}%</p>
                                         <p>defenderTag {members[i].attacks[0].defenderTag}</p>
                                     </div>
                                 )
@@ -58,7 +61,7 @@ class CurrentWarStats extends React.Component {
                                 status={members[i].attacks[1].stars === 3 ? 'finish' : 'error'}
                                 description={(
                                     <div>
-                                        <p>{members[i].attacks[1].stars} <Icon type="star" /></p>
+                                        <div><Rate disabled count={3} defaultValue={members[i].attacks[1].stars} /></div>
                                         <p>destructionPercentage {members[i].attacks[1].destructionPercentage}%</p>
                                         <p>defenderTag {members[i].attacks[1].defenderTag}</p>
                                     </div>
