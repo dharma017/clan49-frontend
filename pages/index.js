@@ -12,7 +12,7 @@ class ClashRoyale extends React.Component {
   }
 
   componentDidMount() {
-    const url = "https://api.cr-api.com/clan/2GPUC2";
+    const url = "https://api.royaleapi.com/clan/2GPUC2";
 
     // in axios access data with .data
     axios({ 

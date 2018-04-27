@@ -17,7 +17,7 @@ class RoyalePlayer extends React.Component {
     // console.log(this.props.url.query);
     const { id } = this.props.url.query;
     // console.log({id});
-    const url = `https://api.cr-api.com/player/${id}`;
+    const url = `https://api.royalepi.com/player/${id}`;
 
     axios({
       method: "get",

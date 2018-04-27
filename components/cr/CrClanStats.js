@@ -34,11 +34,11 @@ class CrClanStats extends React.Component {
         title: "Clan Leader",
         value: this.props.extras.leaderName
       },
-      {
-        key: "5",
-        title: "Clan Chest",
-        value: (1600 / this.props.clan.memberCount) + " crowns"
-      }
+      // {
+      //   key: "5",
+      //   title: "Clan Chest",
+      //   value: (1600 / this.props.clan.memberCount) + " crowns"
+      // }
     ];
 
     const dataSourceB = [
@@ -52,11 +52,11 @@ class CrClanStats extends React.Component {
         title: "Donations Per Week",
         value: this.props.clan.donations
       },
-      {
-        key: "3",
-        title: "Clan Chest Status",
-        value: this.props.clan.clanChest.status
-      },
+      // {
+      //   key: "3",
+      //   title: "Clan Chest Status",
+      //   value: this.props.clan.clanChest.status
+      // },
       {
         key: "4",
         title: "Elders",

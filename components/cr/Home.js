@@ -111,13 +111,13 @@ class Home extends React.Component {
         onFilter: (value, record) => record.role.indexOf(value) === 0,
         sorter: (a, b) => a.name.length - b.name.length
       },
-      {
-        title: "Clan Chest",
-        dataIndex: "clanChestCrowns",
-        width: 5,
-        // defaultSortOrder: "descend",
-        sorter: (a, b) => a.clanChestCrowns - b.clanChestCrowns
-      },
+      // {
+      //   title: "Clan Chest",
+      //   dataIndex: "clanChestCrowns",
+      //   width: 5,
+      //   // defaultSortOrder: "descend",
+      //   sorter: (a, b) => a.clanChestCrowns - b.clanChestCrowns
+      // },
       {
         title: "Arena",
         dataIndex: "arena",
@@ -152,6 +152,7 @@ class Home extends React.Component {
     return (
     <div>
         <div className="clan-container">
+        {/* Dont be a fortune chest but be a lightning chest and crush the victory out!! clan website :- clan49.win */}
           <Row>
             <Col xs={{ span: 12 }} sm={{ span: 8 }}>
               <img
