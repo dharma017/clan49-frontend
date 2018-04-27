@@ -4,6 +4,7 @@ import axios from "axios";
 import MyLoader from "../components/MyLoader.js";
 import CurrentWarStats from "../components/coc/CurrentWarStats.js";
 import CurrentWarHeader from "../components/coc/CurrentWarHeader.js";
+import { Alert } from 'antd';
 
 class WarLog extends React.Component {
   constructor(props) {
@@ -43,12 +44,22 @@ class WarLog extends React.Component {
       </Layout>;
     } else {
 
-      return <Layout>
-        <div>
-          <CurrentWarHeader currentwar={data} />
-          <CurrentWarStats members={data.clan.members} />
-        </div>
-      </Layout>
+      if (data.error) {
+        return <Layout>
+          <div>
+            <Alert message="Current war activity not visible to public" type="info" />
+          </div>
+        </Layout>
+      } else {
+        return <Layout>
+            <div>
+              <CurrentWarHeader currentwar={data} />
+              <CurrentWarStats members={data.clan.members} />
+            </div>
+        </Layout>
+
+      }
+      
     }
   }
 }
