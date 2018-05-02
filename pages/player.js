@@ -22,9 +22,12 @@ class RoyalePlayer extends React.Component {
     axios({
       method: "get",
       url: url,
+      crossDomain: true,
       headers: {
         "Authorization": "Bearer b8a24f73d4dd45909e8dc97a6e1a8ee89f7072acc2e9418189a8a47b57c1ad77",
-        "Content-Type": "application/json"} 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      } 
       })
       .then(response => {
         this.setState({ data: response.data, loading: false });

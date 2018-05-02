@@ -22,7 +22,7 @@ class Home extends React.Component {
     // if (!clan) {
     //   return <p>No data</p>;
     // }
-   
+
     const memberDataSource = clan.members.map((member, index) => ({
       key: index.toString(),
       rank: member.rank,
@@ -38,7 +38,7 @@ class Home extends React.Component {
       clanChestCrowns: member.clanChestCrowns
     }));
 
-    
+
     let clanStat = {
       'coLeaderCount' : 0,
       'elderCount' : 0,
@@ -192,10 +192,10 @@ class Home extends React.Component {
                 {clan.clanChest.status === 'active' && <span>
                   Collect <em style={{ "color": 'red', 'font-size': '12px' }}>{(parseInt(1600 / clan.memberCount)) + " crowns"}</em> for the Clan Chest event.
                     </span>}
-                
+
               </div>
             </Col>
-          </Row> 
+          </Row>
         </div>
         <div className="cr-clan">
           <div className="clan-stats">
@@ -214,7 +214,7 @@ class Home extends React.Component {
           </div>
         </div>
         </div>
-    
+
     )
   }
 }

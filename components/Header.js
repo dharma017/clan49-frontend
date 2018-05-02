@@ -15,11 +15,20 @@ const Header = () => (
       // selectedKeys={[this.state.current]}
       mode="horizontal"
     >
-      <Menu.Item key="cr">
-        <Link href="/">
-          <a style={linkStyle}>Clash Royale</a>
-        </Link>
-      </Menu.Item>
+
+      <SubMenu title={<span>Clash Royale</span>}>
+        <Menu.Item key="cr">
+          <Link href="/">
+            <a style={linkStyle}>Clan</a>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="clanwar">
+          <Link href="/clanwar">
+            <a style={linkStyle}>War Log</a>
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
       <SubMenu title={<span>Clash of Clans</span>}>
         <Menu.Item key="coc">
           <Link href="/coc">
@@ -37,7 +46,7 @@ const Header = () => (
           </Link>
         </Menu.Item>
       </SubMenu>
-      
+
     </Menu>
   </div>
 );
