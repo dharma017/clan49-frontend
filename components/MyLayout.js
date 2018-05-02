@@ -33,7 +33,7 @@ const Layout = props => (
             background-color: #488af4;
       }
       .ant-menu li a:hover{
-            color: #fff !important;
+            color: #000 !important;
       }
       .cr-admission,
       .cr-info,
@@ -120,7 +120,7 @@ const Layout = props => (
       table tr,
       table th {
         text-align: center !important;
-        
+
       }
       .ant-table-thead th{
         color: #ffffff;

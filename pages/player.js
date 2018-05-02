@@ -17,7 +17,7 @@ class RoyalePlayer extends React.Component {
     // console.log(this.props.url.query);
     const { id } = this.props.url.query;
     // console.log({id});
-    const url = `https://api.royalepi.com/player/${id}`;
+    const url = `https://api.royaleapi.com/player/${id}`;
 
     axios({
       method: "get",
@@ -27,7 +27,7 @@ class RoyalePlayer extends React.Component {
         "Authorization": "Bearer b8a24f73d4dd45909e8dc97a6e1a8ee89f7072acc2e9418189a8a47b57c1ad77",
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-      } 
+      }
       })
       .then(response => {
         this.setState({ data: response.data, loading: false });
@@ -40,7 +40,7 @@ class RoyalePlayer extends React.Component {
   render() {
     console.log(this.state.data);
     const { data, loading } = this.state;
-    
+
     if (this.state.loading) {
       return <Layout>
           <div class="loader">
