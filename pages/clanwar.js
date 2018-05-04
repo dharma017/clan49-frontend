@@ -14,7 +14,8 @@ class ClanWar extends React.Component {
   render() {
 
     return <Layout>
-        <div className="clan-container">
+      <div style={{ width: 1024, height: 'auto' }}>
+
           <ResponsiveEmbed src='https://docs.google.com/spreadsheets/d/e/2PACX-1vQu8gBfOgPteHFR3Xerj17JaHNDRxpyEUqt1cMS8h6N-h3LdqDaSKoXSoRW8XzImKX_fa0VMuwa2IQM/pubhtml?gid=0&single=true' allowfullscreen />
       </div>
     </Layout>;
